@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vincent Liao Photography</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <a href="#" class="nav-logo">VINCENT LIAO</a>
+    <ul class="nav-links">
+      <li><a href="#gallery">作品集</a></li>
+      <li><a href="#about">關於</a></li>
+      <li><a href="#contact">聯絡</a></li>
+    </ul>
+    <button class="nav-burger" aria-label="menu">&#9776;</button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <p class="hero-sub">Professional Photographer &amp; Videographer</p>
+      <h1 class="hero-title">Vincent Liao</h1>
+      <p class="hero-desc">商業攝影・影片製作・活動紀錄・形象照・電競・舞蹈</p>
+      <a href="#gallery" class="btn">查看作品</a>
+    </div>
+    <div class="hero-overlay"></div>
+    <img src="images/portrait/portrait_01.jpg" alt="hero" class="hero-bg" />
+  </section>
+
+  <!-- GALLERY -->
+  <section class="gallery-section" id="gallery">
+    <h2 class="section-title">作品集</h2>
+
+    <!-- 主分類 -->
+    <div class="main-tabs">
+      <button class="main-tab active" data-main="photo">
+        <span class="tab-icon">◼</span> 平面
+      </button>
+      <button class="main-tab" data-main="video">
+        <span class="tab-icon">▶</span> 動態
+      </button>
+    </div>
+
+    <!-- 平面子分類 -->
+    <div class="sub-tabs" id="sub-photo">
+      <button class="filter-btn active" data-filter="all">全部</button>
+      <button class="filter-btn" data-filter="portrait">形象照</button>
+      <button class="filter-btn" data-filter="dance">舞蹈</button>
+      <button class="filter-btn" data-filter="esports">電競</button>
+      <button class="filter-btn" data-filter="corporate">企業活動</button>
+      <button class="filter-btn" data-filter="baby">抓周</button>
+      <button class="filter-btn" data-filter="pet">寵物</button>
+      <button class="filter-btn" data-filter="product">商品</button>
+    </div>
+
+    <!-- 動態子分類 -->
+    <div class="sub-tabs hidden" id="sub-video">
+      <button class="filter-btn active" data-filter="all">全部</button>
+      <button class="filter-btn" data-filter="brand">企業形象片</button>
+      <button class="filter-btn" data-filter="commercial">商品廣告</button>
+      <button class="filter-btn" data-filter="mv">MV・音樂</button>
+      <button class="filter-btn" data-filter="interview">訪談・節目</button>
+      <button class="filter-btn" data-filter="event-video">活動紀錄</button>
+    </div>
+
+    <!-- 平面 Grid -->
+    <div class="grid" id="photo-grid">
+
+      <div class="grid-item" data-category="portrait">
+        <img src="images/portrait/portrait_01.jpg" alt="形象照" loading="lazy" />
+        <div class="grid-overlay"><span>形象照</span></div>
+      </div>
+      <div class="grid-item" data-category="portrait">
+        <img src="images/portrait/portrait_02.jpg" alt="形象照" loading="lazy" />
+        <div class="grid-overlay"><span>形象照</span></div>
+      </div>
+      <div class="grid-item" data-category="portrait">
+        <img src="images/portrait/artist_01.jpg" alt="藝人形象" loading="lazy" />
+        <div class="grid-overlay"><span>藝人形象</span></div>
+      </div>
+      <div class="grid-item" data-category="portrait">
+        <img src="images/portrait/artist_02.jpg" alt="藝人形象" loading="lazy" />
+        <div class="grid-overlay"><span>藝人形象</span></div>
+      </div>
+
+      <div class="grid-item" data-category="dance">
+        <img src="images/dance/dance_01.jpg" alt="舞蹈" loading="lazy" />
+        <div class="grid-overlay"><span>舞蹈</span></div>
+      </div>
+      <div class="grid-item" data-category="dance">
+        <img src="images/dance/dance_02.jpg" alt="舞蹈" loading="lazy" />
+        <div class="grid-overlay"><span>舞蹈</span></div>
+      </div>
+
+      <div class="grid-item" data-category="esports">
+        <img src="images/esports/esports_01.jpg" alt="電競" loading="lazy" />
+        <div class="grid-overlay"><span>電競</span></div>
+      </div>
+      <div class="grid-item" data-category="esports">
+        <img src="images/esports/esports_02.jpg" alt="電競" loading="lazy" />
+        <div class="grid-overlay"><span>電競</span></div>
+      </div>
+
+      <div class="grid-item" data-category="corporate">
+        <img src="images/corporate/corporate_01.jpg" alt="企業活動" loading="lazy" />
+        <div class="grid-overlay"><span>企業活動</span></div>
+      </div>
+      <div class="grid-item" data-category="corporate">
+        <img src="images/corporate/corporate_02.jpg" alt="企業活動" loading="lazy" />
+        <div class="grid-overlay"><span>企業活動</span></div>
+      </div>
+
+      <div class="grid-item" data-category="baby">
+        <img src="images/baby/baby_01.jpg" alt="抓周" loading="lazy" />
+        <div class="grid-overlay"><span>抓周紀錄</span></div>
+      </div>
+      <div class="grid-item" data-category="baby">
+        <img src="images/baby/baby_02.jpg" alt="抓周" loading="lazy" />
+        <div class="grid-overlay"><span>抓周紀錄</span></div>
+      </div>
+
+      <div class="grid-item" data-category="pet">
+        <img src="images/pet/pet_01.jpg" alt="寵物" loading="lazy" />
+        <div class="grid-overlay"><span>寵物</span></div>
+      </div>
+      <div class="grid-item" data-category="pet">
+        <img src="images/pet/pet_02.jpg" alt="寵物" loading="lazy" />
+        <div class="grid-overlay"><span>寵物</span></div>
+      </div>
+
+      <div class="grid-item" data-category="product">
+        <img src="images/product/product_01.jpg" alt="商品攝影" loading="lazy" />
+        <div class="grid-overlay"><span>商品攝影</span></div>
+      </div>
+      <div class="grid-item" data-category="product">
+        <img src="images/product/product_02.jpg" alt="商品攝影" loading="lazy" />
+        <div class="grid-overlay"><span>商品攝影</span></div>
+      </div>
+
+    </div>
+
+    <!-- 動態 Grid -->
+    <div class="video-grid hidden" id="video-grid">
+
+      <!-- 企業形象片 -->
+      <div class="video-card" data-category="brand">
+        <a href="https://drive.google.com/file/d/14Wn8kbWhpB3tCfJw6VVxwqPld36zY1wp/view" target="_blank" class="video-thumb-wrap">
+          <img src="https://drive.google.com/thumbnail?id=14Wn8kbWhpB3tCfJw6VVxwqPld36zY1wp&sz=w640" alt="BV SHOP 形象影片" loading="lazy" />
+          <div class="video-overlay"><span class="play-btn">▶</span><span class="video-title">BV SHOP 形象影片</span></div>
+        </a>
+      </div>
+
+      <div class="video-card" data-category="brand">
+        <a href="https://drive.google.com/file/d/18stADtQQy8K3GerSPotkyxhliOAtQuc0/view" target="_blank" class="video-thumb-wrap">
+          <img src="https://drive.google.com/thumbnail?id=18stADtQQy8K3GerSPotkyxhliOAtQuc0&sz=w640" alt="晶鼎 國外參展形象影片" loading="lazy" />
+          <div class="video-overlay"><span class="play-btn">▶</span><span class="video-title">晶鼎 國外參展形象影片</span></div>
+        </a>
+      </div>
+
+      <div class="video-card" data-category="brand">
+        <a href="https://drive.google.com/file/d/1cZiokTWfB4TKeQo1jiB1hcd-xblqBfyo/view" target="_blank" class="video-thumb-wrap">
+          <img src="https://drive.google.com/thumbnail?id=1cZiokTWfB4TKeQo1jiB1hcd-xblqBfyo&sz=w640" alt="LT DIVE 帛琉形象片" loading="lazy" />
+          <div class="video-overlay"><span class="play-btn">▶</span><span class="video-title">LT DIVE 帛琉 形象片</span></div>
+        </a>
+      </div>
+
+      <div class="video-card" data-category="brand">
+        <a href="https://drive.google.com/file/d/143DVCxLFLzZQg_E5cnu2ac5cPWPfHkJO/view" target="_blank" class="video-thumb-wrap">
+          <img src="https://drive.google.com/thumbnail?id=143DVCxLFLzZQg_E5cnu2ac5cPWPfHkJO&sz=w640" alt="喫牛牛肉麵形象影片" loading="lazy" />
+          <div class="video-overlay"><span class="play-btn">▶</span><span class="video-title">喫牛・牛肉麵｜形象影片</span></div>
+        </a>
+      </div>
+
+      <div class="video-card" data-category="brand">
+        <a href="https://drive.google.com/file/d/17WI06AiS0V9zsk2Lce3DkIujqaK9Nx6O/view" target="_blank" class="video-thumb-wrap">
+          <img src="https://drive.google.com/thumbnail?id=17WI06AiS0V9zsk2Lce3DkIujqaK9Nx6O&sz=w640" alt="社頭觀光影片" loading="lazy" />
+          <div class="video-overlay"><span class="play-btn">▶</span><span class="video-title">社頭觀光影片</span></div>
+        </a>
+      </div>
+
+      <!-- 商品廣告 -->
+      <div class="video-card" data-category="commercial">
+        <a href="https://drive.google.com/file/d/1MVASoEjXhWbBGdnEYFR05qRp5xnmbQVo/view" target="_blank" class="video-thumb-wrap">
+          <img src="https://drive.google.com/thumbnail?id=1MVASoEjXhWbBGdnEYFR05qRp5xnmbQVo&sz=w640" alt="JHT 安心亞 LAZY FIT" loading="lazy" />
+          <div class="video-overlay"><span class="play-btn">▶</span><span class="video-title">JHT 品牌代言人 安心亞</span></div>
+        </a>
+      </div>
+
+      <div class="video-card" data-category="commercial">
+        <a href="https://drive.google.com/file/d/1ykxGj3tMJY2HlBmCLXTVhtUMoWwwkh-Z/view" target="_blank" class="video-thumb-wrap">
+          <img src="https://drive.google.com/thumbnail?id=1ykxGj3tMJY2HlBmCLXTVhtUMoWwwkh-Z&sz=w640" alt="decopop 胡小禎" loading="lazy" />
+          <div class="video-overlay"><span class="play-btn">▶</span><span class="video-title">decopop feat. 胡小禎</span></div>
+        </a>
+      </div>
+
+      <div class="video-card" data-category="commercial">
+        <a href="https://drive.google.com/file/d/10grVSGiopkS_yCgobw1aU4q5vc9Q3mTB/view" target="_blank" class="video-thumb-wrap">
+          <img src="https://drive.google.com/thumbnail?id=10grVSGiopkS_yCgobw1aU4q5vc9Q3mTB&sz=w640" alt="HYD 洗地機" loading="lazy" />
+          <div class="video-overlay"><span class="play-btn">▶</span><span class="video-title">HYD 超輕量無線洗地機</span></div>
+        </a>
+      </div>
+
+      <div class="video-card" data-category="commercial">
+        <a href="https://drive.google.com/file/d/1_JGL5DZKHU_MNMeLkYJJAjg2g46KFhRR/view" target="_blank" class="video-thumb-wrap">
+          <img src="https://drive.google.com/thumbnail?id=1_JGL5DZKHU_MNMeLkYJJAjg2g46KFhRR&sz=w640" alt="輝葉 漫威露營" loading="lazy" />
+          <div class="video-overlay"><span class="play-btn">▶</span><span class="video-title">輝葉良品・漫威授權露營系列</span></div>
+        </a>
+      </div>
+
+      <div class="video-card" data-category="commercial">
+        <a href="https://drive.google.com/file/d/1HVzAPE3RfkeIPXInnsrXFQUpZW90gjQC/view" target="_blank" class="video-thumb-wrap">
+          <img src="https://drive.google.com/thumbnail?id=1HVzAPE3RfkeIPXInnsrXFQUpZW90gjQC&sz=w640" alt="iQun 智慧舒眠燈" loading="lazy" />
+          <div class="video-overlay"><span class="play-btn">▶</span><span class="video-title">iQun 智慧舒眠燈</span></div>
+        </a>
+      </div>
+
+      <div class="video-card" data-category="commercial">
+        <a href="https://drive.google.com/file/d/1mzMQd7m_V6BF9wTAzCdhFd8McCt8_oh5/view" target="_blank" class="video-thumb-wrap">
+          <img src="https://drive.google.com/thumbnail?id=1mzMQd7m_V6BF9wTAzCdhFd8McCt8_oh5&sz=w640" alt="Vivo 訪談廣告" loading="lazy" />
+          <div class="video-overlay"><span class="play-btn">▶</span><span class="video-title">vivo｜訪談廣告</span></div>
+        </a>
+      </div>
+
+      <div class="video-card" data-category="commercial">
+        <a href="https://drive.google.com/file/d/12i8XH-bJw6cCSLKnbo8MCe9sCqe6Z7Iq/view" target="_blank" class="video-thumb-wrap">
+          <img src="https://drive.google.com/thumbnail?id=12i8XH-bJw6cCSLKnbo8MCe9sCqe6Z7Iq&sz=w640" alt="Vivo 片頭" loading="lazy" />
+          <div class="video-overlay"><span class="play-btn">▶</span><span class="video-title">vivo｜品牌片頭</span></div>
+        </a>
+      </div>
+
+      <!-- MV・音樂 -->
+      <div class="video-card" data-category="mv">
+        <a href="https://drive.google.com/file/d/1sXAvym9JHqJxSO-o8fyaXQbRgRUXlrXi/view" target="_blank" class="video-thumb-wrap">
+          <img src="https://drive.google.com/thumbnail?id=1sXAvym9JHqJxSO-o8fyaXQbRgRUXlrXi&sz=w640" alt="Last Weakness - 安妮 Annie MV" loading="lazy" />
+          <div class="video-overlay"><span class="play-btn">▶</span><span class="video-title">安妮 Annie｜Last Weakness MV</span></div>
+        </a>
+      </div>
+
+      <div class="video-card" data-category="mv">
+        <a href="https://drive.google.com/file/d/1qEcGgddbydH73E-qHv3yqXC6Asc-pJRl/view" target="_blank" class="video-thumb-wrap">
+          <img src="https://drive.google.com/thumbnail?id=1qEcGgddbydH73E-qHv3yqXC6Asc-pJRl&sz=w640" alt="VyinxHidol" loading="lazy" />
+          <div class="video-overlay"><span class="play-btn">▶</span><span class="video-title">VyinxHidol</span></div>
+        </a>
+      </div>
+
+      <div class="video-card" data-category="mv">
+        <a href="https://drive.google.com/file/d/1syRqXRGQ42407wK65ffWLnoje4weZ0Ud/view" target="_blank" class="video-thumb-wrap">
+          <img src="https://drive.google.com/thumbnail?id=1syRqXRGQ42407wK65ffWLnoje4weZ0Ud&sz=w640" alt="Diseal" loading="lazy" />
+          <div class="video-overlay"><span class="play-btn">▶</span><span class="video-title">Diseal</span></div>
+        </a>
+      </div>
+
+      <div class="video-card" data-category="mv">
+        <a href="https://drive.google.com/file/d/1R7Irku_J9vArObcYN13p7iVuAHpKYUrV/view" target="_blank" class="video-thumb-wrap">
+          <img src="https://drive.google.com/thumbnail?id=1R7Irku_J9vArObcYN13p7iVuAHpKYUrV&sz=w640" alt="SAJA BOYS" loading="lazy" />
+          <div class="video-overlay"><span class="play-btn">▶</span><span class="video-title">SAJA BOYS</span></div>
+        </a>
+      </div>
+
+      <!-- 訪談・節目 -->
+      <div class="video-card" data-category="interview">
+        <a href="https://drive.google.com/file/d/1eerVnWRtKcc43gs-TemIsjAzD-D9PVhN/view" target="_blank" class="video-thumb-wrap">
+          <img src="https://drive.google.com/thumbnail?id=1eerVnWRtKcc43gs-TemIsjAzD-D9PVhN&sz=w640" alt="告五人 獨家專訪" loading="lazy" />
+          <div class="video-overlay"><span class="play-btn">▶</span><span class="video-title">告五人｜女人的多重宇宙 獨家專訪</span></div>
+        </a>
+      </div>
+
+      <div class="video-card" data-category="interview">
+        <a href="https://drive.google.com/file/d/1l1ZBKjshepwOY6zkNGE3O_5JhssTtMdU/view" target="_blank" class="video-thumb-wrap">
+          <img src="https://drive.google.com/thumbnail?id=1l1ZBKjshepwOY6zkNGE3O_5JhssTtMdU&sz=w640" alt="仔仔周渝民 與軒軒講" loading="lazy" />
+          <div class="video-overlay"><span class="play-btn">▶</span><span class="video-title">仔仔周渝民｜與軒軒講 EP10</span></div>
+        </a>
+      </div>
+
+      <div class="video-card" data-category="interview">
+        <a href="https://drive.google.com/file/d/1__eaYauxIyT8pJKw92h166Sv-Lo9t3_E/view" target="_blank" class="video-thumb-wrap">
+          <img src="https://drive.google.com/thumbnail?id=1__eaYauxIyT8pJKw92h166Sv-Lo9t3_E&sz=w640" alt="林依晨 與軒軒講" loading="lazy" />
+          <div class="video-overlay"><span class="play-btn">▶</span><span class="video-title">林依晨｜與軒軒講 EP12</span></div>
+        </a>
+      </div>
+
+      <div class="video-card" data-category="interview">
+        <a href="https://drive.google.com/file/d/1XyzBAIQNHNPgFzRlGokkkJ8zl8XzcMAo/view" target="_blank" class="video-thumb-wrap">
+          <img src="https://drive.google.com/thumbnail?id=1XyzBAIQNHNPgFzRlGokkkJ8zl8XzcMAo&sz=w640" alt="許瑋甯 與軒軒講" loading="lazy" />
+          <div class="video-overlay"><span class="play-btn">▶</span><span class="video-title">許瑋甯｜與軒軒講</span></div>
+        </a>
+      </div>
+
+      <!-- 活動紀錄 -->
+      <div class="video-card" data-category="event-video">
+        <a href="https://drive.google.com/file/d/1WA9KR03zRIte9SR9TfVUknpAQggKHf0-/view" target="_blank" class="video-thumb-wrap">
+          <img src="https://drive.google.com/thumbnail?id=1WA9KR03zRIte9SR9TfVUknpAQggKHf0-&sz=w640" alt="公勝保經 尾牙" loading="lazy" />
+          <div class="video-overlay"><span class="play-btn">▶</span><span class="video-title">公勝保經 松江尾牙</span></div>
+        </a>
+      </div>
+
+      <div class="video-card" data-category="event-video">
+        <a href="https://drive.google.com/file/d/17H78m4QlIWsUXQvKvFlx62C8GDg0ceW5/view" target="_blank" class="video-thumb-wrap">
+          <img src="https://drive.google.com/thumbnail?id=17H78m4QlIWsUXQvKvFlx62C8GDg0ceW5&sz=w640" alt="寵物扶輪社" loading="lazy" />
+          <div class="video-overlay"><span class="play-btn">▶</span><span class="video-title">寵物扶輪社 活動紀錄</span></div>
+        </a>
+      </div>
+
+      <div class="video-card" data-category="event-video">
+        <a href="https://drive.google.com/file/d/15eT-mMqdlNCRz1XOpj6txJBxWfikNQ7o/view" target="_blank" class="video-thumb-wrap">
+          <img src="https://drive.google.com/thumbnail?id=15eT-mMqdlNCRz1XOpj6txJBxWfikNQ7o&sz=w640" alt="天啓 沙灘電音派對" loading="lazy" />
+          <div class="video-overlay"><span class="play-btn">▶</span><span class="video-title">天啓 Aethspire｜沙灘電音派對</span></div>
+        </a>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about-section" id="about">
+    <div class="about-inner">
+      <div class="about-img">
+        <img src="images/portrait/portrait_01.jpg" alt="Vincent Liao" />
+      </div>
+      <div class="about-text">
+        <h2>關於 Vincent</h2>
+        <p>專業攝影師暨影像創作者，擅長商業攝影、影片製作、企業活動紀錄、形象照、舞蹈與電競現場拍攝。</p>
+        <p>累積超過 164 場拍攝場次，客戶橫跨品牌企業、藝文表演、電競賽事與個人形象。</p>
+        <p>每一張照片、每一幀畫面，都是一個當下的故事。</p>
+        <a href="#contact" class="btn">預約拍攝</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact-section" id="contact">
+    <h2 class="section-title">聯絡我</h2>
+    <div class="contact-inner">
+      <div class="contact-info">
+        <div class="contact-item">
+          <span class="contact-icon">✉</span>
+          <a href="mailto:vincent.liao6110@gmail.com">vincent.liao6110@gmail.com</a>
+        </div>
+        <div class="contact-item">
+          <span class="contact-icon">◼</span>
+          <span>平面攝影・動態影片・活動紀錄・形象照</span>
+        </div>
+        <div class="contact-item">
+          <span class="contact-icon">📍</span>
+          <span>台北市・全台出勤</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>&copy; 2026 Vincent Liao Photography. All rights reserved.</p>
+  </footer>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lb-close">&times;</button>
+    <button class="lightbox-prev" id="lb-prev">&#8249;</button>
+    <img src="" alt="" id="lb-img" />
+    <button class="lightbox-next" id="lb-next">&#8250;</button>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

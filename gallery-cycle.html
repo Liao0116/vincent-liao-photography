@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>台北國際自行車展 | LIAO</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .gallery-page { padding: 8rem 2rem 4rem; max-width: 1400px; margin: 0 auto; }
+    .gallery-page-header { margin-bottom: 3rem; }
+    .gallery-page-back { font-size: 0.8rem; letter-spacing: 0.15em; color: var(--accent); text-decoration: none; display: inline-block; margin-bottom: 1.5rem; }
+    .gallery-page-back:hover { opacity: 0.7; }
+    .gallery-page-tag { font-size: 0.72rem; letter-spacing: 0.2em; color: var(--muted); text-transform: uppercase; margin-bottom: 0.8rem; }
+    .gallery-page-title { font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 300; letter-spacing: 0.08em; margin-bottom: 0.8rem; }
+    .gallery-page-sub { font-size: 0.85rem; color: var(--muted); letter-spacing: 0.1em; }
+    .photo-masonry { columns: 3; column-gap: 0.5rem; }
+    .photo-masonry-item { break-inside: avoid; margin-bottom: 0.5rem; overflow: hidden; cursor: pointer; }
+    .photo-masonry-item img { width: 100%; height: auto; display: block; transition: transform 0.4s ease; }
+    .photo-masonry-item:hover img { transform: scale(1.03); }
+    @media (max-width: 900px) { .photo-masonry { columns: 2; } }
+    @media (max-width: 600px) { .photo-masonry { columns: 1; } .gallery-page { padding: 6rem 1rem 3rem; } }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">LIAO</a>
+    <ul class="nav-links">
+      <li><a href="index.html#gallery">作品集</a></li>
+      <li><a href="index.html#about">關於</a></li>
+      <li><a href="index.html#contact">聯絡</a></li>
+    </ul>
+    <button class="nav-burger" aria-label="menu">&#9776;</button>
+  </nav>
+
+  <div class="gallery-page">
+    <div class="gallery-page-header">
+      <a href="index.html#gallery" class="gallery-page-back">← 返回作品集</a>
+      <p class="gallery-page-tag">展覽攝影・企業活動</p>
+      <h1 class="gallery-page-title">台北國際自行車展<br>Taipei Cycle 2026</h1>
+      <p class="gallery-page-sub">外貿協會 TAITRA・南港展覽館</p>
+    </div>
+
+    <div class="photo-masonry">
+      <div class="photo-masonry-item"><img src="images/nangang-full/Cycle-00995.jpg" alt="Taipei Cycle" loading="lazy" /></div>
+      <div class="photo-masonry-item"><img src="images/nangang-full/Cycle-01045.jpg" alt="Taipei Cycle" loading="lazy" /></div>
+      <div class="photo-masonry-item"><img src="images/nangang-full/Cycle-01136.jpg" alt="Taipei Cycle" loading="lazy" /></div>
+      <div class="photo-masonry-item"><img src="images/nangang-full/Cycle-01200.jpg" alt="Taipei Cycle" loading="lazy" /></div>
+      <div class="photo-masonry-item"><img src="images/nangang-full/Cycle-04054.jpg" alt="Taipei Cycle" loading="lazy" /></div>
+      <div class="photo-masonry-item"><img src="images/nangang-full/Cycle-05815.jpg" alt="Taipei Cycle" loading="lazy" /></div>
+      <div class="photo-masonry-item"><img src="images/nangang-full/Cycle-05894.jpg" alt="Taipei Cycle" loading="lazy" /></div>
+      <div class="photo-masonry-item"><img src="images/nangang-full/Cycle-06637.jpg" alt="Taipei Cycle" loading="lazy" /></div>
+      <div class="photo-masonry-item"><img src="images/nangang-full/Cycle-09182.jpg" alt="Taipei Cycle" loading="lazy" /></div>
+      <div class="photo-masonry-item"><img src="images/nangang-full/Cycle-09196.jpg" alt="Taipei Cycle" loading="lazy" /></div>
+      <div class="photo-masonry-item"><img src="images/nangang-full/Cycle-09249.jpg" alt="Taipei Cycle" loading="lazy" /></div>
+      <div class="photo-masonry-item"><img src="images/nangang-full/Cycle-09486.jpg" alt="Taipei Cycle" loading="lazy" /></div>
+      <div class="photo-masonry-item"><img src="images/nangang-full/Cycle-09601.jpg" alt="Taipei Cycle" loading="lazy" /></div>
+      <div class="photo-masonry-item"><img src="images/nangang-full/Cycle-09642.jpg" alt="Taipei Cycle" loading="lazy" /></div>
+      <div class="photo-masonry-item"><img src="images/nangang-full/Cycle-09711.jpg" alt="Taipei Cycle" loading="lazy" /></div>
+      <div class="photo-masonry-item"><img src="images/nangang-full/Cycle-09735.jpg" alt="Taipei Cycle" loading="lazy" /></div>
+      <div class="photo-masonry-item"><img src="images/nangang-full/Cycle-09833.jpg" alt="Taipei Cycle" loading="lazy" /></div>
+    </div>
+  </div>
+
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lb-close">&times;</button>
+    <button class="lightbox-prev" id="lb-prev">&#8249;</button>
+    <img src="" alt="" id="lb-img" />
+    <button class="lightbox-next" id="lb-next">&#8250;</button>
+  </div>
+
+  <footer class="footer">
+    <p>&copy; 2026 LIAO. All rights reserved.</p>
+  </footer>
+
+  <script src="js/gallery-page.js"></script>
+</body>
+</html>

@@ -33,9 +33,8 @@
 
   <!-- GALLERY -->
   <section class="gallery-section" id="gallery">
-    <h2 class="section-title">作品集</h2>
 
-    <!-- 主分類 -->
+    <!-- 主分類 tabs -->
     <div class="main-tabs">
       <button class="main-tab active" data-main="photo">
         <span class="tab-icon">◼</span> 平面
@@ -45,30 +44,124 @@
       </button>
     </div>
 
-    <!-- 平面子分類 -->
-    <div class="sub-tabs" id="sub-photo">
-      <button class="filter-btn active" data-filter="all">全部</button>
-      <button class="filter-btn" data-filter="portrait">形象照</button>
-      <button class="filter-btn" data-filter="dance">舞蹈</button>
-      <button class="filter-btn" data-filter="esports">電競</button>
-      <button class="filter-btn" data-filter="corporate">企業活動</button>
-      <button class="filter-btn" data-filter="baby">抓周</button>
-      <button class="filter-btn" data-filter="pet">寵物</button>
-      <button class="filter-btn" data-filter="product">商品</button>
+    <!-- ===== 平面：案例展示 ===== -->
+    <div id="photo-section">
+
+      <!-- 案例 1：南港展覽館 -->
+      <div class="case-block">
+        <div class="case-text">
+          <p class="case-tag">展覽攝影・企業活動</p>
+          <h2 class="case-title">南港展覽館<br>國際級展覽攝影</h2>
+          <p class="case-client">外貿協會 TAITRA・指定合作攝影師</p>
+          <blockquote class="case-desc">
+            三年深耕南港展覽館，擔任外貿協會年度大型展覽官方攝影師。<br>
+            涵蓋 Taipei Cycle、TaiSPO、360 Mobility、醫療展、汽車展、能源展等國際級展覽，累積數千張高規格展場影像紀錄。
+          </blockquote>
+          <p class="case-tags">#展覽攝影 &nbsp;#企業活動 &nbsp;#外貿協會 &nbsp;#南港展覽館</p>
+          <a href="https://www.taipeicycle.com.tw/zh-tw/album/index.html" target="_blank" class="case-btn">點擊查看更多照片</a>
+        </div>
+        <div class="case-photos">
+          <div class="case-grid">
+            <img src="images/nangang/Cycle-05795.jpg" alt="台北國際自行車展" loading="lazy" />
+            <img src="images/nangang/Cycle-09182.jpg" alt="台北國際自行車展" loading="lazy" />
+            <img src="images/nangang/Cycle-01045.jpg" alt="台北國際自行車展" loading="lazy" />
+            <img src="images/nangang/Cycle-09601.jpg" alt="台北國際自行車展" loading="lazy" />
+          </div>
+        </div>
+      </div>
+
+      <div class="case-divider"></div>
+
+      <!-- 案例 2：形象照 -->
+      <div class="case-block case-reverse">
+        <div class="case-text">
+          <p class="case-tag">人像・形象照</p>
+          <h2 class="case-title">藝人形象・<br>個人品牌攝影</h2>
+          <p class="case-client">藝人・KOL・企業形象</p>
+          <blockquote class="case-desc">
+            從藝人形象到個人品牌，精準捕捉每位拍攝對象最具說服力的一面。<br>
+            細膩的燈光控制與場景佈局，讓每一張照片都成為最強的個人名片。
+          </blockquote>
+          <p class="case-tags">#形象照 &nbsp;#人像攝影 &nbsp;#藝人形象 &nbsp;#個人品牌</p>
+          <a href="mailto:vincent.liao6110@gmail.com" class="case-btn">預約拍攝</a>
+        </div>
+        <div class="case-photos">
+          <div class="case-grid">
+            <img src="images/portrait/portrait_01.jpg" alt="形象照" loading="lazy" />
+            <img src="images/portrait/artist_01.jpg" alt="藝人形象" loading="lazy" />
+            <img src="images/portrait/portrait_02.jpg" alt="形象照" loading="lazy" />
+            <img src="images/portrait/artist_02.jpg" alt="藝人形象" loading="lazy" />
+          </div>
+        </div>
+      </div>
+
+      <div class="case-divider"></div>
+
+      <!-- 案例 3：舞蹈・電競 -->
+      <div class="case-block">
+        <div class="case-text">
+          <p class="case-tag">舞蹈・電競・現場攝影</p>
+          <h2 class="case-title">動態現場・<br>瞬間捕捉</h2>
+          <p class="case-client">舞蹈表演・電競賽事</p>
+          <blockquote class="case-desc">
+            舞台上最精彩的瞬間稍縱即逝，需要精準的預判與快速的反應。<br>
+            從舞蹈成發到電競大賽，用鏡頭記錄每個值得被看見的當下。
+          </blockquote>
+          <p class="case-tags">#舞蹈攝影 &nbsp;#電競 &nbsp;#現場攝影 &nbsp;#表演紀錄</p>
+          <a href="mailto:vincent.liao6110@gmail.com" class="case-btn">預約拍攝</a>
+        </div>
+        <div class="case-photos">
+          <div class="case-grid">
+            <img src="images/dance/dance_01.jpg" alt="舞蹈" loading="lazy" />
+            <img src="images/esports/esports_01.jpg" alt="電競" loading="lazy" />
+            <img src="images/dance/dance_02.jpg" alt="舞蹈" loading="lazy" />
+            <img src="images/esports/esports_02.jpg" alt="電競" loading="lazy" />
+          </div>
+        </div>
+      </div>
+
+      <div class="case-divider"></div>
+
+      <!-- 案例 4：商品攝影 -->
+      <div class="case-block case-reverse">
+        <div class="case-text">
+          <p class="case-tag">商品・平面廣告</p>
+          <h2 class="case-title">商品攝影・<br>品牌視覺</h2>
+          <p class="case-client">品牌商品・電商視覺</p>
+          <blockquote class="case-desc">
+            精準的光線控制與構圖，讓商品的質感與品牌個性一次到位。<br>
+            從電商主圖到廣告素材，打造讓消費者一眼就想購買的視覺體驗。
+          </blockquote>
+          <p class="case-tags">#商品攝影 &nbsp;#平面廣告 &nbsp;#電商視覺 &nbsp;#品牌攝影</p>
+          <a href="mailto:vincent.liao6110@gmail.com" class="case-btn">預約拍攝</a>
+        </div>
+        <div class="case-photos">
+          <div class="case-grid">
+            <img src="images/product/product_01.jpg" alt="商品攝影" loading="lazy" />
+            <img src="images/corporate/corporate_kmc.jpg" alt="企業展覽" loading="lazy" />
+            <img src="images/product/product_02.jpg" alt="商品攝影" loading="lazy" />
+            <img src="images/corporate/corporate_01.jpg" alt="企業活動" loading="lazy" />
+          </div>
+        </div>
+      </div>
+
     </div>
 
-    <!-- 動態子分類 -->
-    <div class="sub-tabs hidden" id="sub-video">
-      <button class="filter-btn active" data-filter="all">全部</button>
-      <button class="filter-btn" data-filter="brand">企業形象片</button>
-      <button class="filter-btn" data-filter="commercial">商品廣告</button>
-      <button class="filter-btn" data-filter="mv">MV・音樂</button>
-      <button class="filter-btn" data-filter="interview">訪談・節目</button>
-      <button class="filter-btn" data-filter="event-video">活動紀錄</button>
-    </div>
+    <!-- ===== 動態影片區（保留原本） ===== -->
+    <div id="video-section" class="hidden">
 
-    <!-- 平面 Grid -->
-    <div class="grid" id="photo-grid">
+      <!-- 動態子分類 -->
+      <div class="sub-tabs" id="sub-video">
+        <button class="filter-btn active" data-filter="all">全部</button>
+        <button class="filter-btn" data-filter="brand">企業形象片</button>
+        <button class="filter-btn" data-filter="commercial">商品廣告</button>
+        <button class="filter-btn" data-filter="mv">MV・音樂</button>
+        <button class="filter-btn" data-filter="interview">訪談・節目</button>
+        <button class="filter-btn" data-filter="event-video">活動紀錄</button>
+      </div>
+
+    <!-- 平面 Grid（hidden，保留資料） -->
+    <div class="grid hidden" id="photo-grid">
 
       <div class="grid-item" data-category="corporate">
         <img src="images/corporate/taipei_cycle.jpg" alt="台北國際自行車展" loading="lazy" />
@@ -323,6 +416,8 @@
       </div>
 
     </div>
+
+    </div><!-- /video-section -->
 
   </section>
 

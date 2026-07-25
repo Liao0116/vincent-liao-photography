@@ -1,10 +1,8 @@
 // ===== 主分類切換（平面 / 動態）=====
 const mainTabs = document.querySelectorAll('.main-tab');
-const subPhoto = document.getElementById('sub-photo');
+const photoSection = document.getElementById('photo-section');
+const videoSection = document.getElementById('video-section');
 const subVideo = document.getElementById('sub-video');
-const photoGrid = document.getElementById('photo-grid');
-const videoGrid = document.getElementById('video-grid');
-const videoNote = document.getElementById('video-note');
 
 mainTabs.forEach(tab => {
   tab.addEventListener('click', () => {
@@ -13,27 +11,17 @@ mainTabs.forEach(tab => {
 
     const type = tab.dataset.main;
     if (type === 'photo') {
-      subPhoto.classList.remove('hidden');
-      subVideo.classList.add('hidden');
-      photoGrid.classList.remove('hidden');
-      videoGrid.classList.add('hidden');
-      videoNote.classList.add('hidden');
-      // 重設平面子分類
-      resetFilter(subPhoto, photoItems);
+      photoSection.classList.remove('hidden');
+      videoSection.classList.add('hidden');
     } else {
-      subPhoto.classList.add('hidden');
-      subVideo.classList.remove('hidden');
-      photoGrid.classList.add('hidden');
-      videoGrid.classList.remove('hidden');
-      videoNote.classList.remove('hidden');
-      // 重設動態子分類
+      photoSection.classList.add('hidden');
+      videoSection.classList.remove('hidden');
       resetFilter(subVideo, videoCards);
     }
   });
 });
 
-// ===== 子分類篩選 =====
-const photoItems = document.querySelectorAll('#photo-grid .grid-item');
+// ===== 動態影片篩選 =====
 const videoCards = document.querySelectorAll('#video-grid .video-card');
 
 function setupFilter(subTabEl, items) {
@@ -61,26 +49,26 @@ function resetFilter(subTabEl, items) {
   items.forEach(item => item.classList.remove('hidden'));
 }
 
-setupFilter(subPhoto, photoItems);
 setupFilter(subVideo, videoCards);
 
-// ===== Lightbox =====
+// ===== Lightbox（案例圖片）=====
 const lightbox = document.getElementById('lightbox');
 const lbImg = document.getElementById('lb-img');
 const lbClose = document.getElementById('lb-close');
 const lbPrev = document.getElementById('lb-prev');
 const lbNext = document.getElementById('lb-next');
 let currentIndex = 0;
+let allCaseImgs = [];
 
-function getVisible() {
-  return [...photoItems].filter(i => !i.classList.contains('hidden'));
+function buildImgList() {
+  allCaseImgs = [...document.querySelectorAll('.case-grid img')];
 }
 
-photoItems.forEach(item => {
-  item.addEventListener('click', () => {
-    const visible = getVisible();
-    currentIndex = visible.indexOf(item);
-    lbImg.src = visible[currentIndex].querySelector('img').src;
+document.querySelectorAll('.case-grid img').forEach(img => {
+  img.addEventListener('click', () => {
+    buildImgList();
+    currentIndex = allCaseImgs.indexOf(img);
+    lbImg.src = allCaseImgs[currentIndex].src;
     lightbox.classList.add('active');
     document.body.style.overflow = 'hidden';
   });
@@ -90,15 +78,13 @@ lbClose.addEventListener('click', closeLB);
 lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLB(); });
 
 lbPrev.addEventListener('click', () => {
-  const visible = getVisible();
-  currentIndex = (currentIndex - 1 + visible.length) % visible.length;
-  lbImg.src = visible[currentIndex].querySelector('img').src;
+  currentIndex = (currentIndex - 1 + allCaseImgs.length) % allCaseImgs.length;
+  lbImg.src = allCaseImgs[currentIndex].src;
 });
 
 lbNext.addEventListener('click', () => {
-  const visible = getVisible();
-  currentIndex = (currentIndex + 1) % visible.length;
-  lbImg.src = visible[currentIndex].querySelector('img').src;
+  currentIndex = (currentIndex + 1) % allCaseImgs.length;
+  lbImg.src = allCaseImgs[currentIndex].src;
 });
 
 document.addEventListener('keydown', e => {

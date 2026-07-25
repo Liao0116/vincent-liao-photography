@@ -361,11 +361,11 @@ img { display: block; width: 100%; object-fit: cover; }
 /* ============ CASE STUDY BLOCKS ============ */
 .case-block {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 5rem;
   align-items: center;
-  padding: 5rem 4rem;
-  max-width: 1300px;
+  padding: 7rem 5rem;
+  max-width: 1500px;
   margin: 0 auto;
 }
 
@@ -381,10 +381,10 @@ img { display: block; width: 100%; object-fit: cover; }
 }
 
 .case-title {
-  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  font-size: clamp(2.2rem, 4vw, 4rem);
   font-weight: 300;
   letter-spacing: 0.05em;
-  line-height: 1.3;
+  line-height: 1.25;
   margin-bottom: 0.8rem;
 }
 
@@ -399,8 +399,8 @@ img { display: block; width: 100%; object-fit: cover; }
   border-left: 2px solid var(--accent);
   padding-left: 1.2rem;
   color: rgba(255,255,255,0.65);
-  font-size: 0.9rem;
-  line-height: 1.9;
+  font-size: 1rem;
+  line-height: 2;
   margin-bottom: 1.5rem;
 }
 
@@ -426,7 +426,7 @@ img { display: block; width: 100%; object-fit: cover; }
 .case-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 0.5rem;
+  gap: 0.6rem;
 }
 
 .case-grid img {
@@ -503,7 +503,7 @@ img { display: block; width: 100%; object-fit: cover; }
   .about-inner { grid-template-columns: 1fr; gap: 2.5rem; }
   .nav { padding: 1rem 1.5rem; }
   .main-tab { padding: 0.8rem 2rem; font-size: 0.9rem; }
-  .case-block { grid-template-columns: 1fr; gap: 2.5rem; padding: 3rem 2rem; }
+  .case-block { grid-template-columns: 1fr; gap: 2.5rem; padding: 4rem 2rem; }
   .case-reverse .case-text { order: 0; }
   .case-reverse .case-photos { order: 0; }
 }

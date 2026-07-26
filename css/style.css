@@ -471,7 +471,7 @@ img { display: block; width: 100%; object-fit: cover; }
 /* ============ VIDEO SHOWCASE ============ */
 .video-showcase {
   position: relative;
-  aspect-ratio: 16/9;
+  aspect-ratio: 16 / 9;
   width: 100%;
   display: flex;
   align-items: center;

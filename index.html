@@ -99,17 +99,109 @@
 
     </div>
 
-    <!-- ===== 動態影片區（保留原本） ===== -->
+    <!-- ===== 動態影片區 ===== -->
     <div id="video-section" class="hidden">
 
-      <!-- 動態子分類 -->
-      <div class="sub-tabs" id="sub-video">
-        <button class="filter-btn active" data-filter="all">全部</button>
-        <button class="filter-btn" data-filter="brand">企業形象片</button>
-        <button class="filter-btn" data-filter="commercial">商品廣告</button>
-        <button class="filter-btn" data-filter="mv">MV・音樂</button>
-        <button class="filter-btn" data-filter="interview">訪談・節目</button>
-        <button class="filter-btn" data-filter="event-video">活動紀錄</button>
+      <!-- 企業形象片 -->
+      <div class="video-showcase" id="vs-brand">
+        <div class="video-showcase-bg" style="background-image: url('https://drive.google.com/thumbnail?id=14Wn8kbWhpB3tCfJw6VVxwqPld36zY1wp&sz=w1920')"></div>
+        <div class="video-showcase-overlay"></div>
+        <div class="video-showcase-content">
+          <h2 class="video-showcase-title">企業形象片</h2>
+          <button class="video-showcase-play" data-id="14Wn8kbWhpB3tCfJw6VVxwqPld36zY1wp">
+            <span class="vs-play-circle">&#9654;</span><span>播放影片</span>
+          </button>
+          <button class="video-showcase-all" data-target="vsg-brand">全部影片 +</button>
+        </div>
+        <button class="video-showcase-next" data-next="vs-commercial">&#8250;</button>
+      </div>
+      <div class="vs-grid hidden" id="vsg-brand">
+        <div class="video-card"><a href="https://drive.google.com/file/d/14Wn8kbWhpB3tCfJw6VVxwqPld36zY1wp/view" class="video-thumb-wrap"><img src="https://drive.google.com/thumbnail?id=14Wn8kbWhpB3tCfJw6VVxwqPld36zY1wp&sz=w640" alt="BV SHOP" loading="lazy" /><div class="video-overlay"><span class="play-btn">▶</span><span class="video-title">BV SHOP 形象影片</span></div></a></div>
+        <div class="video-card"><a href="https://drive.google.com/file/d/18stADtQQy8K3GerSPotkyxhliOAtQuc0/view" class="video-thumb-wrap"><img src="https://drive.google.com/thumbnail?id=18stADtQQy8K3GerSPotkyxhliOAtQuc0&sz=w640" alt="晶鼎" loading="lazy" /><div class="video-overlay"><span class="play-btn">▶</span><span class="video-title">晶鼎 國外參展形象影片</span></div></a></div>
+        <div class="video-card"><a href="https://drive.google.com/file/d/1cZiokTWfB4TKeQo1jiB1hcd-xblqBfyo/view" class="video-thumb-wrap"><img src="https://drive.google.com/thumbnail?id=1cZiokTWfB4TKeQo1jiB1hcd-xblqBfyo&sz=w640" alt="LT DIVE" loading="lazy" /><div class="video-overlay"><span class="play-btn">▶</span><span class="video-title">LT DIVE 帛琉 形象片</span></div></a></div>
+        <div class="video-card"><a href="https://drive.google.com/file/d/143DVCxLFLzZQg_E5cnu2ac5cPWPfHkJO/view" class="video-thumb-wrap"><img src="https://drive.google.com/thumbnail?id=143DVCxLFLzZQg_E5cnu2ac5cPWPfHkJO&sz=w640" alt="喫牛" loading="lazy" /><div class="video-overlay"><span class="play-btn">▶</span><span class="video-title">喫牛・牛肉麵｜形象影片</span></div></a></div>
+        <div class="video-card"><a href="https://drive.google.com/file/d/17WI06AiS0V9zsk2Lce3DkIujqaK9Nx6O/view" class="video-thumb-wrap"><img src="https://drive.google.com/thumbnail?id=17WI06AiS0V9zsk2Lce3DkIujqaK9Nx6O&sz=w640" alt="社頭" loading="lazy" /><div class="video-overlay"><span class="play-btn">▶</span><span class="video-title">社頭觀光影片</span></div></a></div>
+      </div>
+
+      <!-- 商品廣告 -->
+      <div class="video-showcase" id="vs-commercial">
+        <div class="video-showcase-bg" style="background-image: url('https://drive.google.com/thumbnail?id=1MVASoEjXhWbBGdnEYFR05qRp5xnmbQVo&sz=w1920')"></div>
+        <div class="video-showcase-overlay"></div>
+        <div class="video-showcase-content">
+          <h2 class="video-showcase-title">商品廣告</h2>
+          <button class="video-showcase-play" data-id="1MVASoEjXhWbBGdnEYFR05qRp5xnmbQVo">
+            <span class="vs-play-circle">&#9654;</span><span>播放影片</span>
+          </button>
+          <button class="video-showcase-all" data-target="vsg-commercial">全部影片 +</button>
+        </div>
+        <button class="video-showcase-next" data-next="vs-mv">&#8250;</button>
+      </div>
+      <div class="vs-grid hidden" id="vsg-commercial">
+        <div class="video-card"><a href="https://drive.google.com/file/d/1MVASoEjXhWbBGdnEYFR05qRp5xnmbQVo/view" class="video-thumb-wrap"><img src="https://drive.google.com/thumbnail?id=1MVASoEjXhWbBGdnEYFR05qRp5xnmbQVo&sz=w640" alt="JHT 安心亞" loading="lazy" /><div class="video-overlay"><span class="play-btn">▶</span><span class="video-title">JHT 品牌代言人 安心亞</span></div></a></div>
+        <div class="video-card"><a href="https://drive.google.com/file/d/1ykxGj3tMJY2HlBmCLXTVhtUMoWwwkh-Z/view" class="video-thumb-wrap"><img src="https://drive.google.com/thumbnail?id=1ykxGj3tMJY2HlBmCLXTVhtUMoWwwkh-Z&sz=w640" alt="decopop" loading="lazy" /><div class="video-overlay"><span class="play-btn">▶</span><span class="video-title">decopop feat. 胡小禎</span></div></a></div>
+        <div class="video-card"><a href="https://drive.google.com/file/d/10grVSGiopkS_yCgobw1aU4q5vc9Q3mTB/view" class="video-thumb-wrap"><img src="https://drive.google.com/thumbnail?id=10grVSGiopkS_yCgobw1aU4q5vc9Q3mTB&sz=w640" alt="HYD" loading="lazy" /><div class="video-overlay"><span class="play-btn">▶</span><span class="video-title">HYD 超輕量無線洗地機</span></div></a></div>
+        <div class="video-card"><a href="https://drive.google.com/file/d/1_JGL5DZKHU_MNMeLkYJJAjg2g46KFhRR/view" class="video-thumb-wrap"><img src="https://drive.google.com/thumbnail?id=1_JGL5DZKHU_MNMeLkYJJAjg2g46KFhRR&sz=w640" alt="輝葉" loading="lazy" /><div class="video-overlay"><span class="play-btn">▶</span><span class="video-title">輝葉良品・漫威授權露營系列</span></div></a></div>
+        <div class="video-card"><a href="https://drive.google.com/file/d/1HVzAPE3RfkeIPXInnsrXFQUpZW90gjQC/view" class="video-thumb-wrap"><img src="https://drive.google.com/thumbnail?id=1HVzAPE3RfkeIPXInnsrXFQUpZW90gjQC&sz=w640" alt="iQun" loading="lazy" /><div class="video-overlay"><span class="play-btn">▶</span><span class="video-title">iQun 智慧舒眠燈</span></div></a></div>
+        <div class="video-card"><a href="https://drive.google.com/file/d/1mzMQd7m_V6BF9wTAzCdhFd8McCt8_oh5/view" class="video-thumb-wrap"><img src="https://drive.google.com/thumbnail?id=1mzMQd7m_V6BF9wTAzCdhFd8McCt8_oh5&sz=w640" alt="vivo" loading="lazy" /><div class="video-overlay"><span class="play-btn">▶</span><span class="video-title">vivo｜訪談廣告</span></div></a></div>
+        <div class="video-card"><a href="https://drive.google.com/file/d/12i8XH-bJw6cCSLKnbo8MCe9sCqe6Z7Iq/view" class="video-thumb-wrap"><img src="https://drive.google.com/thumbnail?id=12i8XH-bJw6cCSLKnbo8MCe9sCqe6Z7Iq&sz=w640" alt="vivo 片頭" loading="lazy" /><div class="video-overlay"><span class="play-btn">▶</span><span class="video-title">vivo｜品牌片頭</span></div></a></div>
+      </div>
+
+      <!-- MV・音樂 -->
+      <div class="video-showcase" id="vs-mv">
+        <div class="video-showcase-bg" style="background-image: url('https://drive.google.com/thumbnail?id=1sXAvym9JHqJxSO-o8fyaXQbRgRUXlrXi&sz=w1920')"></div>
+        <div class="video-showcase-overlay"></div>
+        <div class="video-showcase-content">
+          <h2 class="video-showcase-title">MV・音樂</h2>
+          <button class="video-showcase-play" data-id="1sXAvym9JHqJxSO-o8fyaXQbRgRUXlrXi">
+            <span class="vs-play-circle">&#9654;</span><span>播放影片</span>
+          </button>
+          <button class="video-showcase-all" data-target="vsg-mv">全部影片 +</button>
+        </div>
+        <button class="video-showcase-next" data-next="vs-interview">&#8250;</button>
+      </div>
+      <div class="vs-grid hidden" id="vsg-mv">
+        <div class="video-card"><a href="https://drive.google.com/file/d/1sXAvym9JHqJxSO-o8fyaXQbRgRUXlrXi/view" class="video-thumb-wrap"><img src="https://drive.google.com/thumbnail?id=1sXAvym9JHqJxSO-o8fyaXQbRgRUXlrXi&sz=w640" alt="Last Weakness" loading="lazy" /><div class="video-overlay"><span class="play-btn">▶</span><span class="video-title">安妮 Annie｜Last Weakness MV</span></div></a></div>
+        <div class="video-card"><a href="https://drive.google.com/file/d/1qEcGgddbydH73E-qHv3yqXC6Asc-pJRl/view" class="video-thumb-wrap"><img src="https://drive.google.com/thumbnail?id=1qEcGgddbydH73E-qHv3yqXC6Asc-pJRl&sz=w640" alt="VyinxHidol" loading="lazy" /><div class="video-overlay"><span class="play-btn">▶</span><span class="video-title">VyinxHidol</span></div></a></div>
+        <div class="video-card"><a href="https://drive.google.com/file/d/1syRqXRGQ42407wK65ffWLnoje4weZ0Ud/view" class="video-thumb-wrap"><img src="https://drive.google.com/thumbnail?id=1syRqXRGQ42407wK65ffWLnoje4weZ0Ud&sz=w640" alt="Diseal" loading="lazy" /><div class="video-overlay"><span class="play-btn">▶</span><span class="video-title">Diseal</span></div></a></div>
+        <div class="video-card"><a href="https://drive.google.com/file/d/1R7Irku_J9vArObcYN13p7iVuAHpKYUrV/view" class="video-thumb-wrap"><img src="https://drive.google.com/thumbnail?id=1R7Irku_J9vArObcYN13p7iVuAHpKYUrV&sz=w640" alt="SAJA BOYS" loading="lazy" /><div class="video-overlay"><span class="play-btn">▶</span><span class="video-title">SAJA BOYS</span></div></a></div>
+      </div>
+
+      <!-- 訪談・節目 -->
+      <div class="video-showcase" id="vs-interview">
+        <div class="video-showcase-bg" style="background-image: url('https://drive.google.com/thumbnail?id=1eerVnWRtKcc43gs-TemIsjAzD-D9PVhN&sz=w1920')"></div>
+        <div class="video-showcase-overlay"></div>
+        <div class="video-showcase-content">
+          <h2 class="video-showcase-title">訪談・節目</h2>
+          <button class="video-showcase-play" data-id="1eerVnWRtKcc43gs-TemIsjAzD-D9PVhN">
+            <span class="vs-play-circle">&#9654;</span><span>播放影片</span>
+          </button>
+          <button class="video-showcase-all" data-target="vsg-interview">全部影片 +</button>
+        </div>
+        <button class="video-showcase-next" data-next="vs-event">&#8250;</button>
+      </div>
+      <div class="vs-grid hidden" id="vsg-interview">
+        <div class="video-card"><a href="https://drive.google.com/file/d/1eerVnWRtKcc43gs-TemIsjAzD-D9PVhN/view" class="video-thumb-wrap"><img src="https://drive.google.com/thumbnail?id=1eerVnWRtKcc43gs-TemIsjAzD-D9PVhN&sz=w640" alt="告五人" loading="lazy" /><div class="video-overlay"><span class="play-btn">▶</span><span class="video-title">告五人｜女人的多重宇宙 獨家專訪</span></div></a></div>
+        <div class="video-card"><a href="https://drive.google.com/file/d/1l1ZBKjshepwOY6zkNGE3O_5JhssTtMdU/view" class="video-thumb-wrap"><img src="https://drive.google.com/thumbnail?id=1l1ZBKjshepwOY6zkNGE3O_5JhssTtMdU&sz=w640" alt="仔仔周渝民" loading="lazy" /><div class="video-overlay"><span class="play-btn">▶</span><span class="video-title">仔仔周渝民｜與軒軒講 EP10</span></div></a></div>
+        <div class="video-card"><a href="https://drive.google.com/file/d/1__eaYauxIyT8pJKw92h166Sv-Lo9t3_E/view" class="video-thumb-wrap"><img src="https://drive.google.com/thumbnail?id=1__eaYauxIyT8pJKw92h166Sv-Lo9t3_E&sz=w640" alt="林依晨" loading="lazy" /><div class="video-overlay"><span class="play-btn">▶</span><span class="video-title">林依晨｜與軒軒講 EP12</span></div></a></div>
+        <div class="video-card"><a href="https://drive.google.com/file/d/1XyzBAIQNHNPgFzRlGokkkJ8zl8XzcMAo/view" class="video-thumb-wrap"><img src="https://drive.google.com/thumbnail?id=1XyzBAIQNHNPgFzRlGokkkJ8zl8XzcMAo&sz=w640" alt="許瑋甯" loading="lazy" /><div class="video-overlay"><span class="play-btn">▶</span><span class="video-title">許瑋甯｜與軒軒講</span></div></a></div>
+      </div>
+
+      <!-- 活動紀錄 -->
+      <div class="video-showcase" id="vs-event">
+        <div class="video-showcase-bg" style="background-image: url('https://drive.google.com/thumbnail?id=1WA9KR03zRIte9SR9TfVUknpAQggKHf0-&sz=w1920')"></div>
+        <div class="video-showcase-overlay"></div>
+        <div class="video-showcase-content">
+          <h2 class="video-showcase-title">活動紀錄</h2>
+          <button class="video-showcase-play" data-id="1WA9KR03zRIte9SR9TfVUknpAQggKHf0-">
+            <span class="vs-play-circle">&#9654;</span><span>播放影片</span>
+          </button>
+          <button class="video-showcase-all" data-target="vsg-event">全部影片 +</button>
+        </div>
+      </div>
+      <div class="vs-grid hidden" id="vsg-event">
+        <div class="video-card"><a href="https://drive.google.com/file/d/1WA9KR03zRIte9SR9TfVUknpAQggKHf0-/view" class="video-thumb-wrap"><img src="https://drive.google.com/thumbnail?id=1WA9KR03zRIte9SR9TfVUknpAQggKHf0-&sz=w640" alt="公勝保經" loading="lazy" /><div class="video-overlay"><span class="play-btn">▶</span><span class="video-title">公勝保經 松江尾牙</span></div></a></div>
+        <div class="video-card"><a href="https://drive.google.com/file/d/17H78m4QlIWsUXQvKvFlx62C8GDg0ceW5/view" class="video-thumb-wrap"><img src="https://drive.google.com/thumbnail?id=17H78m4QlIWsUXQvKvFlx62C8GDg0ceW5&sz=w640" alt="寵物扶輪社" loading="lazy" /><div class="video-overlay"><span class="play-btn">▶</span><span class="video-title">寵物扶輪社 活動紀錄</span></div></a></div>
+        <div class="video-card"><a href="https://drive.google.com/file/d/15eT-mMqdlNCRz1XOpj6txJBxWfikNQ7o/view" class="video-thumb-wrap"><img src="https://drive.google.com/thumbnail?id=15eT-mMqdlNCRz1XOpj6txJBxWfikNQ7o&sz=w640" alt="天啓" loading="lazy" /><div class="video-overlay"><span class="play-btn">▶</span><span class="video-title">天啓 Aethspire｜沙灘電音派對</span></div></a></div>
       </div>
 
     <!-- 平面 Grid（hidden，保留資料） -->

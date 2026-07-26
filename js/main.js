@@ -2,7 +2,6 @@
 const mainTabs = document.querySelectorAll('.main-tab');
 const photoSection = document.getElementById('photo-section');
 const videoSection = document.getElementById('video-section');
-const subVideo = document.getElementById('sub-video');
 
 function fadeSwitch(hide, show) {
   hide.style.opacity = '0';
@@ -22,34 +21,35 @@ mainTabs.forEach(tab => {
       fadeSwitch(videoSection, photoSection);
     } else {
       fadeSwitch(photoSection, videoSection);
-      resetFilter(subVideo, videoCards);
     }
   });
 });
 
-// ===== 動態影片篩選 =====
-const videoCards = document.querySelectorAll('#video-grid .video-card');
-
-function setupFilter(subTabEl, items) {
-  subTabEl.querySelectorAll('.filter-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      subTabEl.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      const filter = btn.dataset.filter;
-      items.forEach(item => {
-        item.classList.toggle('hidden', filter !== 'all' && item.dataset.category !== filter);
-      });
-    });
+// ===== Video Showcase =====
+document.querySelectorAll('.video-showcase-play').forEach(btn => {
+  btn.addEventListener('click', () => {
+    vlbIframe.src = `https://drive.google.com/file/d/${btn.dataset.id}/preview`;
+    videoLightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
   });
-}
+});
 
-function resetFilter(subTabEl, items) {
-  subTabEl.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-  subTabEl.querySelector('.filter-btn').classList.add('active');
-  items.forEach(item => item.classList.remove('hidden'));
-}
+document.querySelectorAll('.video-showcase-all').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const grid = document.getElementById(btn.dataset.target);
+    if (!grid) return;
+    const opening = grid.classList.contains('hidden');
+    grid.classList.toggle('hidden', !opening);
+    btn.textContent = opening ? '收起影片 −' : '全部影片 +';
+  });
+});
 
-setupFilter(subVideo, videoCards);
+document.querySelectorAll('.video-showcase-next').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const next = document.getElementById(btn.dataset.next);
+    if (next) next.scrollIntoView({ behavior: 'smooth' });
+  });
+});
 
 // ===== Lightbox（案例圖片）=====
 const lightbox = document.getElementById('lightbox');

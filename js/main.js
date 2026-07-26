@@ -82,6 +82,32 @@ document.addEventListener('keydown', e => {
 });
 function closeLB() { lightbox.classList.remove('active'); document.body.style.overflow = ''; }
 
+// ===== Video Lightbox =====
+const videoLightbox = document.getElementById('video-lightbox');
+const vlbIframe = document.getElementById('vlb-iframe');
+const vlbClose = document.getElementById('vlb-close');
+
+document.querySelectorAll('.video-thumb-wrap').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const href = link.getAttribute('href');
+    const match = href.match(/\/d\/([^/?]+)/);
+    if (!match) return;
+    vlbIframe.src = `https://drive.google.com/file/d/${match[1]}/preview`;
+    videoLightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  });
+});
+
+vlbClose.addEventListener('click', closeVLB);
+videoLightbox.addEventListener('click', e => { if (e.target === videoLightbox) closeVLB(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && videoLightbox.classList.contains('active')) closeVLB(); });
+function closeVLB() {
+  videoLightbox.classList.remove('active');
+  vlbIframe.src = '';
+  document.body.style.overflow = '';
+}
+
 // ===== Mobile nav：開啟 / 點連結後關閉 =====
 const burger = document.querySelector('.nav-burger');
 const navLinksEl = document.querySelector('.nav-links');

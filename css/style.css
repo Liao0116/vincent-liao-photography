@@ -718,7 +718,8 @@ img { display: block; width: 100%; object-fit: cover; }
   .about-inner { grid-template-columns: 1fr; gap: 2.5rem; }
   .nav { padding: 1rem 1.5rem; }
   .main-tab { padding: 0.8rem 2rem; font-size: 0.9rem; }
-  .case-block { grid-template-columns: 1fr; gap: 2.5rem; padding: 4rem 2rem; }
+  .case-block,
+  .case-block.case-reverse { grid-template-columns: 1fr; gap: 2.5rem; padding: 4rem 2rem; }
   .case-reverse .case-text { order: 0; }
   .case-reverse .case-photos { order: 0; }
 }

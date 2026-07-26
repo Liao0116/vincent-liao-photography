@@ -28,7 +28,7 @@ mainTabs.forEach(tab => {
 // ===== Video Showcase =====
 document.querySelectorAll('.video-showcase-play').forEach(btn => {
   btn.addEventListener('click', () => {
-    vlbIframe.src = `https://drive.google.com/file/d/${btn.dataset.id}/preview`;
+    vlbIframe.src = `https://drive.google.com/file/d/${btn.dataset.id}/preview?autoplay=1`;
     videoLightbox.classList.add('active');
     document.body.style.overflow = 'hidden';
   });
@@ -93,7 +93,7 @@ document.querySelectorAll('.video-thumb-wrap').forEach(link => {
     const href = link.getAttribute('href');
     const match = href.match(/\/d\/([^/?]+)/);
     if (!match) return;
-    vlbIframe.src = `https://drive.google.com/file/d/${match[1]}/preview`;
+    vlbIframe.src = `https://drive.google.com/file/d/${match[1]}/preview?autoplay=1`;
     videoLightbox.classList.add('active');
     document.body.style.overflow = 'hidden';
   });

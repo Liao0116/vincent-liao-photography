@@ -632,9 +632,8 @@ img { display: block; width: 100%; object-fit: cover; }
 }
 .video-lightbox.active { display: flex; }
 .video-lightbox-inner {
-  width: 90vw;
-  max-width: 1200px;
-  aspect-ratio: 16/9;
+  width: 100vw;
+  height: 100vh;
 }
 .video-lightbox-inner iframe {
   width: 100%;

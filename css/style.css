@@ -731,5 +731,11 @@ img { display: block; width: 100%; object-fit: cover; }
   .hero-title { font-size: 2.5rem; }
   .gallery-section { padding: 4rem 1rem 2rem; }
   .main-tab { padding: 0.7rem 1.5rem; }
-  .case-block { padding: 2.5rem 1rem; }
+  .case-block { padding: 2.5rem 3%; }
+  /* Video showcase mobile */
+  .video-showcase { height: auto; min-height: 100svh; padding: 6rem 3% 4rem; flex-direction: column; justify-content: center; }
+  .video-showcase-next { display: none; }
+  .video-showcase-title { font-size: clamp(1.6rem, 8vw, 2.5rem); }
+  .video-showcase-content { gap: 1.2rem; }
+  .vs-grid { grid-template-columns: 1fr; }
 }

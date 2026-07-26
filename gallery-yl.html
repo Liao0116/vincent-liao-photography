@@ -13,12 +13,12 @@
     .gallery-page-tag { font-size: 0.72rem; letter-spacing: 0.2em; color: var(--muted); text-transform: uppercase; margin-bottom: 0.8rem; }
     .gallery-page-title { font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 300; letter-spacing: 0.08em; margin-bottom: 0.8rem; }
     .gallery-page-sub { font-size: 0.85rem; color: var(--muted); letter-spacing: 0.1em; }
-    .photo-masonry { columns: 3; column-gap: 0.5rem; }
-    .photo-masonry-item { break-inside: avoid; margin-bottom: 0.5rem; overflow: hidden; cursor: pointer; }
-    .photo-masonry-item img { width: 100%; height: auto; display: block; transition: transform 0.4s ease; }
+    .photo-masonry { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; }
+    .photo-masonry-item { overflow: hidden; cursor: pointer; }
+    .photo-masonry-item img { width: 100%; aspect-ratio: 3/2; object-fit: cover; display: block; transition: transform 0.4s ease; }
     .photo-masonry-item:hover img { transform: scale(1.03); }
-    @media (max-width: 900px) { .photo-masonry { columns: 2; } }
-    @media (max-width: 600px) { .photo-masonry { columns: 1; } .gallery-page { padding: 6rem 1rem 3rem; } }
+    @media (max-width: 900px) { .photo-masonry { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 600px) { .photo-masonry { grid-template-columns: 1fr; } .gallery-page { padding: 6rem 1rem 3rem; } }
   </style>
 </head>
 <body>

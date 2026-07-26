@@ -732,7 +732,9 @@ img { display: block; width: 100%; object-fit: cover; }
   .hero-title { font-size: 2.5rem; }
   .gallery-section { padding: 4rem 0 2rem; }
   .main-tab { padding: 0.7rem 1.5rem; }
-  .case-block { padding: 2.5rem 1%; }
+  .case-block { padding: 2.5rem 0; }
+  .case-text { padding: 0 4%; }
+  .case-photos { padding: 0 1%; }
   /* Video showcase mobile */
   .video-showcase-next { display: none; }
   .video-showcase-title { font-size: clamp(1.2rem, 6vw, 2rem); }

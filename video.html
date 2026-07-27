@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>動態影像製作 | LIAO</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .vp-page { padding: 8rem 5% 5rem; max-width: 1300px; margin: 0 auto; }
+    .vp-header { margin-bottom: 3.5rem; }
+    .vp-back { font-size: 0.78rem; letter-spacing: 0.15em; color: var(--accent); text-decoration: none; display: inline-block; margin-bottom: 1.5rem; }
+    .vp-back:hover { opacity: 0.7; }
+    .vp-tag { font-size: 0.7rem; letter-spacing: 0.3em; color: var(--muted); text-transform: uppercase; margin-bottom: 0.7rem; }
+    .vp-title { font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 300; letter-spacing: 0.08em; margin-bottom: 0.6rem; }
+    .vp-sub { font-size: 0.85rem; color: var(--muted); letter-spacing: 0.1em; }
+
+    .vp-filter {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      margin-bottom: 3rem;
+      border-bottom: 1px solid var(--border);
+      padding: 0 1rem;
+    }
+    .vp-filter-btn {
+      padding: 0.75rem 1.8rem;
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      color: var(--muted);
+      font-size: 0.85rem;
+      letter-spacing: 0.15em;
+      cursor: pointer;
+      transition: color 0.25s, border-color 0.25s;
+      margin-bottom: -1px;
+    }
+    .vp-filter-btn:hover { color: var(--text); }
+    .vp-filter-btn.active { color: var(--text); border-bottom-color: var(--accent); }
+
+    .vp-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem 1.2rem;
+    }
+    .vp-card { cursor: pointer; }
+    .vp-card.hidden { display: none; }
+
+    .vp-thumb {
+      position: relative;
+      aspect-ratio: 16/9;
+      overflow: hidden;
+      background: var(--surface);
+    }
+    .vp-thumb img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+    .vp-card:hover .vp-thumb img { transform: scale(1.05); }
+
+    .vp-play {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(44,36,22,0.35);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .vp-card:hover .vp-play { opacity: 1; }
+    .vp-play-circle {
+      width: 52px; height: 52px;
+      border: 2px solid var(--accent);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--accent);
+      font-size: 1rem;
+      padding-left: 3px;
+    }
+
+    .vp-info {
+      padding: 0.65rem 0 0;
+      border-top: 1px solid var(--border);
+      margin-top: 0;
+    }
+    .vp-name { font-size: 0.88rem; letter-spacing: 0.05em; color: var(--text); margin-bottom: 0.25rem; line-height: 1.4; }
+    .vp-tags-text { font-size: 0.72rem; color: var(--muted); letter-spacing: 0.04em; }
+
+    @media (max-width: 900px) {
+      .vp-grid { grid-template-columns: repeat(2, 1fr); }
+      .vp-filter-btn { padding: 0.65rem 1.2rem; font-size: 0.8rem; }
+    }
+    @media (max-width: 540px) {
+      .vp-page { padding: 6rem 4% 3rem; }
+      .vp-grid { grid-template-columns: 1fr; }
+      .vp-filter-btn { padding: 0.6rem 0.9rem; font-size: 0.75rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">LIAO</a>
+    <ul class="nav-links">
+      <li><a href="index.html#gallery">平面攝影</a></li>
+      <li><a href="video.html" class="spy-active">動態影像</a></li>
+      <li><a href="index.html#about">關於</a></li>
+      <li><a href="index.html#contact">聯絡</a></li>
+    </ul>
+    <button class="nav-burger" aria-label="menu">&#9776;</button>
+  </nav>
+
+  <div class="vp-page">
+    <div class="vp-header">
+      <a href="index.html" class="vp-back">← 返回首頁</a>
+      <p class="vp-tag">Video Production</p>
+      <h1 class="vp-title">動態影像製作</h1>
+      <p class="vp-sub">形象影片・活動紀錄・產品廣告・音樂影像</p>
+    </div>
+
+    <div class="vp-filter">
+      <button class="vp-filter-btn active" data-cat="all">全部</button>
+      <button class="vp-filter-btn" data-cat="xingxiang">形象</button>
+      <button class="vp-filter-btn" data-cat="huodong">活動</button>
+      <button class="vp-filter-btn" data-cat="chanpin">產品</button>
+      <button class="vp-filter-btn" data-cat="mv">ＭＶ</button>
+    </div>
+
+    <div class="vp-grid">
+
+      <!-- ===== 形象 ===== -->
+      <div class="vp-card" data-cat="xingxiang" data-id="1j5m1coi6ToXj_qopW6Vr5UN7f92SrwFV">
+        <div class="vp-thumb">
+          <img src="images/video-thumbs/aj2.jpg" alt="AJ2沙發" loading="lazy" />
+          <div class="vp-play"><div class="vp-play-circle">▶</div></div>
+        </div>
+        <div class="vp-info">
+          <div class="vp-name">AJ2沙發</div>
+          <div class="vp-tags-text">#杭州 #工廠 #沙發</div>
+        </div>
+      </div>
+
+      <div class="vp-card" data-cat="xingxiang" data-id="1pb1tGCSVg8c2_pJ3IuDgH4LmzDlyjf3_">
+        <div class="vp-thumb">
+          <img src="https://drive.google.com/thumbnail?id=1pb1tGCSVg8c2_pJ3IuDgH4LmzDlyjf3_&sz=w960" alt="GEAR FITNESS" loading="lazy" />
+          <div class="vp-play"><div class="vp-play-circle">▶</div></div>
+        </div>
+        <div class="vp-info">
+          <div class="vp-name">GEAR FITNESS 形象影片</div>
+          <div class="vp-tags-text">#健身房</div>
+        </div>
+      </div>
+
+      <div class="vp-card" data-cat="xingxiang" data-id="17WI06AiS0V9zsk2Lce3DkIujqaK9Nx6O">
+        <div class="vp-thumb">
+          <img src="https://drive.google.com/thumbnail?id=17WI06AiS0V9zsk2Lce3DkIujqaK9Nx6O&sz=w960" alt="社頭觀光影片" loading="lazy" />
+          <div class="vp-play"><div class="vp-play-circle">▶</div></div>
+        </div>
+        <div class="vp-info">
+          <div class="vp-name">社頭觀光影片</div>
+          <div class="vp-tags-text">#彰化縣 #政府</div>
+        </div>
+      </div>
+
+      <div class="vp-card" data-cat="xingxiang" data-id="18stADtQQy8K3GerSPotkyxhliOAtQuc0">
+        <div class="vp-thumb">
+          <img src="images/video-thumbs/jingding.jpg" alt="晶鼎 國外參展形象影片" loading="lazy" />
+          <div class="vp-play"><div class="vp-play-circle">▶</div></div>
+        </div>
+        <div class="vp-info">
+          <div class="vp-name">晶鼎 國外參展形象影片</div>
+          <div class="vp-tags-text">#工廠</div>
+        </div>
+      </div>
+
+      <div class="vp-card" data-cat="xingxiang" data-id="14Wn8kbWhpB3tCfJw6VVxwqPld36zY1wp">
+        <div class="vp-thumb">
+          <img src="https://drive.google.com/thumbnail?id=14Wn8kbWhpB3tCfJw6VVxwqPld36zY1wp&sz=w960" alt="BV SHOP 企業形象" loading="lazy" />
+          <div class="vp-play"><div class="vp-play-circle">▶</div></div>
+        </div>
+        <div class="vp-info">
+          <div class="vp-name">BV SHOP 企業形象</div>
+          <div class="vp-tags-text">#企業形象 #動畫</div>
+        </div>
+      </div>
+
+      <div class="vp-card" data-cat="xingxiang" data-id="1v3fQaBD8ci-JKJg1Gu31Qisrwn0U5lit">
+        <div class="vp-thumb">
+          <img src="https://drive.google.com/thumbnail?id=1v3fQaBD8ci-JKJg1Gu31Qisrwn0U5lit&sz=w960" alt="BV SHOP 企業形象 II" loading="lazy" />
+          <div class="vp-play"><div class="vp-play-circle">▶</div></div>
+        </div>
+        <div class="vp-info">
+          <div class="vp-name">BV SHOP 企業形象 II</div>
+          <div class="vp-tags-text">#企業形象 #動畫</div>
+        </div>
+      </div>
+
+      <div class="vp-card" data-cat="xingxiang" data-id="1J71O2vO_UzA3X5-tEZ58UAlpZfJo7c95">
+        <div class="vp-thumb">
+          <img src="images/video-thumbs/bna.jpg" alt="當代BNA－陀摩" loading="lazy" />
+          <div class="vp-play"><div class="vp-play-circle">▶</div></div>
+        </div>
+        <div class="vp-info">
+          <div class="vp-name">當代BNA－陀摩</div>
+          <div class="vp-tags-text">#形象影片 #南投縣 #政府</div>
+        </div>
+      </div>
+
+      <!-- ===== 活動 ===== -->
+      <div class="vp-card" data-cat="huodong" data-id="1syRqXRGQ42407wK65ffWLnoje4weZ0Ud">
+        <div class="vp-thumb">
+          <img src="https://drive.google.com/thumbnail?id=1syRqXRGQ42407wK65ffWLnoje4weZ0Ud&sz=w960" alt="Diseal 活動" loading="lazy" />
+          <div class="vp-play"><div class="vp-play-circle">▶</div></div>
+        </div>
+        <div class="vp-info">
+          <div class="vp-name">Diseal 活動</div>
+          <div class="vp-tags-text">#活動</div>
+        </div>
+      </div>
+
+      <div class="vp-card" data-cat="huodong" data-id="11ORIPXYRL2YS6FrTvaoSkSwRATCkkPT3">
+        <div class="vp-thumb">
+          <img src="https://drive.google.com/thumbnail?id=11ORIPXYRL2YS6FrTvaoSkSwRATCkkPT3&sz=w960" alt="水行夏日" loading="lazy" />
+          <div class="vp-play"><div class="vp-play-circle">▶</div></div>
+        </div>
+        <div class="vp-info">
+          <div class="vp-name">水行夏日</div>
+          <div class="vp-tags-text">#短影音 #泳池 #Party</div>
+        </div>
+      </div>
+
+      <div class="vp-card" data-cat="huodong" data-id="1r4ZTTgapAO2dVSmUPB4HWSWo8_Ih6kVt">
+        <div class="vp-thumb">
+          <img src="images/video-thumbs/aethspire-1.jpg" alt="天啓 Aethspire — 鈦極" loading="lazy" />
+          <div class="vp-play"><div class="vp-play-circle">▶</div></div>
+        </div>
+        <div class="vp-info">
+          <div class="vp-name">天啓 Aethspire — 鈦極</div>
+          <div class="vp-tags-text">#DJ</div>
+        </div>
+      </div>
+
+      <div class="vp-card" data-cat="huodong" data-id="15eT-mMqdlNCRz1XOpj6txJBxWfikNQ7o">
+        <div class="vp-thumb">
+          <img src="images/video-thumbs/aethspire-2.jpg" alt="天啓 Aethspire — 白水木" loading="lazy" />
+          <div class="vp-play"><div class="vp-play-circle">▶</div></div>
+        </div>
+        <div class="vp-info">
+          <div class="vp-name">天啓 Aethspire — 白水木</div>
+          <div class="vp-tags-text">#DJ</div>
+        </div>
+      </div>
+
+      <div class="vp-card" data-cat="huodong" data-id="1QV5-cDcUK5f8MzS1Z2BuDQzWN0YXJP63">
+        <div class="vp-thumb">
+          <img src="images/video-thumbs/shuangshi.jpg" alt="雙十國慶" loading="lazy" />
+          <div class="vp-play"><div class="vp-play-circle">▶</div></div>
+        </div>
+        <div class="vp-info">
+          <div class="vp-name">雙十國慶</div>
+          <div class="vp-tags-text">#桃園市 #政府</div>
+        </div>
+      </div>
+
+      <div class="vp-card" data-cat="huodong" data-id="1L2n8nk9QovpEc7P6cS3uyXKvMyOGmgZ5">
+        <div class="vp-thumb">
+          <img src="images/video-thumbs/urban-paradise.jpg" alt="URBAN PARADISE 跨年" loading="lazy" />
+          <div class="vp-play"><div class="vp-play-circle">▶</div></div>
+        </div>
+        <div class="vp-info">
+          <div class="vp-name">URBAN PARADISE 跨年</div>
+          <div class="vp-tags-text">#101 #美食</div>
+        </div>
+      </div>
+
+      <!-- ===== 產品 ===== -->
+      <div class="vp-card" data-cat="chanpin" data-id="143DVCxLFLzZQg_E5cnu2ac5cPWPfHkJO">
+        <div class="vp-thumb">
+          <img src="images/video-thumbs/cheniu.jpg" alt="喫牛・牛肉麵" loading="lazy" />
+          <div class="vp-play"><div class="vp-play-circle">▶</div></div>
+        </div>
+        <div class="vp-info">
+          <div class="vp-name">喫牛・牛肉麵</div>
+          <div class="vp-tags-text">#形象影片 #美食</div>
+        </div>
+      </div>
+
+      <div class="vp-card" data-cat="chanpin" data-id="1BAlHfTHudNe2dPxbf_IQov39hqxqDkPq">
+        <div class="vp-thumb">
+          <img src="images/video-thumbs/sanshang.jpg" alt="業配 三上優雅" loading="lazy" />
+          <div class="vp-play"><div class="vp-play-circle">▶</div></div>
+        </div>
+        <div class="vp-info">
+          <div class="vp-name">業配 三上優雅</div>
+          <div class="vp-tags-text">#短影音</div>
+        </div>
+      </div>
+
+      <div class="vp-card" data-cat="chanpin" data-id="1ggLAq86YTOacbpLCbU6y7G2X-CecboGO">
+        <div class="vp-thumb">
+          <img src="images/video-thumbs/huiye-massage.jpg" alt="輝葉 按摩枕" loading="lazy" />
+          <div class="vp-play"><div class="vp-play-circle">▶</div></div>
+        </div>
+        <div class="vp-info">
+          <div class="vp-name">輝葉 按摩枕</div>
+          <div class="vp-tags-text">#動畫 #產品 #居家</div>
+        </div>
+      </div>
+
+      <div class="vp-card" data-cat="chanpin" data-id="18qcEWMnKDLgg_E5cnu2ac5cPWPfHkJY">
+        <div class="vp-thumb">
+          <img src="images/video-thumbs/huiye-sofa2.jpg" alt="輝葉 電動沙發（兩人座）" loading="lazy" />
+          <div class="vp-play"><div class="vp-play-circle">▶</div></div>
+        </div>
+        <div class="vp-info">
+          <div class="vp-name">輝葉 電動沙發（兩人座）</div>
+          <div class="vp-tags-text">#電動沙發 #沙發</div>
+        </div>
+      </div>
+
+      <div class="vp-card" data-cat="chanpin" data-id="1pgdMnoHGl01bEOec2MKV7lm9GCCF81kV">
+        <div class="vp-thumb">
+          <img src="images/video-thumbs/huiye-sofa3.jpg" alt="輝葉 電動沙發（三人座）" loading="lazy" />
+          <div class="vp-play"><div class="vp-play-circle">▶</div></div>
+        </div>
+        <div class="vp-info">
+          <div class="vp-name">輝葉 電動沙發（三人座）</div>
+          <div class="vp-tags-text">#電動沙發 #沙發</div>
+        </div>
+      </div>
+
+      <div class="vp-card" data-cat="chanpin" data-id="1aGJhZcXvoyE40b7mWFyicIF48ArM2buK">
+        <div class="vp-thumb">
+          <img src="https://drive.google.com/thumbnail?id=1aGJhZcXvoyE40b7mWFyicIF48ArM2buK&sz=w960" alt="Lithell 電動露營車" loading="lazy" />
+          <div class="vp-play"><div class="vp-play-circle">▶</div></div>
+        </div>
+        <div class="vp-info">
+          <div class="vp-name">Lithell 電動露營車</div>
+          <div class="vp-tags-text">#業配</div>
+        </div>
+      </div>
+
+      <div class="vp-card" data-cat="chanpin" data-id="12ms1K_ihmDVUCkU3lm9P46uNPLjhI1gY">
+        <div class="vp-thumb">
+          <img src="https://drive.google.com/thumbnail?id=12ms1K_ihmDVUCkU3lm9P46uNPLjhI1gY&sz=w960" alt="Backbone 人體工學椅" loading="lazy" />
+          <div class="vp-play"><div class="vp-play-circle">▶</div></div>
+        </div>
+        <div class="vp-info">
+          <div class="vp-name">Backbone 人體工學椅</div>
+          <div class="vp-tags-text">#產品</div>
+        </div>
+      </div>
+
+      <!-- ===== ＭＶ ===== -->
+      <div class="vp-card" data-cat="mv" data-id="1ECdts55wPRmRIxeW-Fwgvx7nh_7dPyFz">
+        <div class="vp-thumb">
+          <img src="images/video-thumbs/mv-yaoai.jpg" alt="想愛就上 If You Want Me" loading="lazy" />
+          <div class="vp-play"><div class="vp-play-circle">▶</div></div>
+        </div>
+        <div class="vp-info">
+          <div class="vp-name">想愛就上 If You Want Me</div>
+          <div class="vp-tags-text">慕林唯 #MV</div>
+        </div>
+      </div>
+
+      <div class="vp-card" data-cat="mv" data-id="1OKMNWRdcaVN50fA41fRNX3mqNOjvCOt6">
+        <div class="vp-thumb">
+          <img src="https://drive.google.com/thumbnail?id=1OKMNWRdcaVN50fA41fRNX3mqNOjvCOt6&sz=w960" alt="新光盃熱門街舞大賽" loading="lazy" />
+          <div class="vp-play"><div class="vp-play-circle">▶</div></div>
+        </div>
+        <div class="vp-info">
+          <div class="vp-name">新光盃熱門街舞大賽</div>
+          <div class="vp-tags-text">#MV</div>
+        </div>
+      </div>
+
+    </div><!-- /vp-grid -->
+  </div><!-- /vp-page -->
+
+  <!-- Video Lightbox -->
+  <div class="video-lightbox" id="video-lightbox">
+    <button class="lightbox-close" id="vlb-close">&times;</button>
+    <div class="video-lightbox-inner">
+      <iframe id="vlb-iframe" src="" frameborder="0" allowfullscreen allow="autoplay; encrypted-media"></iframe>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p>&copy; 2026 LIAO. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Filter
+    const filterBtns = document.querySelectorAll('.vp-filter-btn');
+    const cards = document.querySelectorAll('.vp-card');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const cat = btn.dataset.cat;
+        cards.forEach(card => {
+          card.classList.toggle('hidden', cat !== 'all' && card.dataset.cat !== cat);
+        });
+      });
+    });
+
+    // Video Lightbox
+    const videoLightbox = document.getElementById('video-lightbox');
+    const vlbIframe = document.getElementById('vlb-iframe');
+    const vlbClose = document.getElementById('vlb-close');
+
+    cards.forEach(card => {
+      card.addEventListener('click', () => {
+        vlbIframe.src = `https://drive.google.com/file/d/${card.dataset.id}/preview?autoplay=1`;
+        videoLightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    vlbClose.addEventListener('click', closeVLB);
+    videoLightbox.addEventListener('click', e => { if (e.target === videoLightbox) closeVLB(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeVLB(); });
+    function closeVLB() {
+      videoLightbox.classList.remove('active');
+      vlbIframe.src = '';
+      document.body.style.overflow = '';
+    }
+
+    // Mobile nav
+    const burger = document.querySelector('.nav-burger');
+    const navLinksEl = document.querySelector('.nav-links');
+    if (burger) {
+      burger.addEventListener('click', () => {
+        navLinksEl.classList.toggle('nav-open');
+      });
+      navLinksEl.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => navLinksEl.classList.remove('nav-open'));
+      });
+    }
+  </script>
+</body>
+</html>

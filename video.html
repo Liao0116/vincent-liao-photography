@@ -87,6 +87,38 @@
     .vp-name { font-size: 0.88rem; letter-spacing: 0.05em; color: var(--text); margin-bottom: 0.3rem; line-height: 1.4; }
     .vp-tags-text { font-size: 0.72rem; color: var(--accent); letter-spacing: 0.08em; }
 
+    /* ── Reels cards ── */
+    .vp-card[data-cat="reels"] .vp-thumb {
+      aspect-ratio: 9/16;
+    }
+    .vp-card[data-cat="reels"] .vp-thumb img {
+      object-fit: contain;
+      position: relative;
+      z-index: 1;
+    }
+    .vp-card[data-cat="reels"] .vp-play {
+      z-index: 2;
+    }
+
+    /* 模糊背景：預設隱藏，全部模式下顯示 */
+    .vp-blur-bg {
+      display: none;
+      position: absolute;
+      inset: -15%;
+      background-size: cover;
+      background-position: center;
+      filter: blur(20px) brightness(0.5) saturate(1.2);
+      z-index: 0;
+    }
+
+    /* 全部 tab：Reels 改回 16:9 + 模糊背景 */
+    .vp-grid[data-active="all"] .vp-card[data-cat="reels"] .vp-thumb {
+      aspect-ratio: 16/9;
+    }
+    .vp-grid[data-active="all"] .vp-blur-bg {
+      display: block;
+    }
+
     @media (max-width: 1100px) {
       .vp-grid { grid-template-columns: repeat(3, 1fr); }
     }
@@ -428,6 +460,7 @@
       <!-- ===== Reels ===== -->
       <div class="vp-card" data-cat="reels" data-featured="true" data-id="1BAlHfTHudNe2dPxbf_IQov39hqxqDkPq">
         <div class="vp-thumb">
+          <div class="vp-blur-bg" style="background-image:url('images/video-thumbs/sanshang.jpg')"></div>
           <img src="images/video-thumbs/sanshang.jpg" alt="業配 三上優雅" loading="lazy" />
           <div class="vp-play"><div class="vp-play-circle">▶</div></div>
         </div>
@@ -439,6 +472,7 @@
 
       <div class="vp-card" data-cat="reels" data-featured="true" data-id="1eWsX9mWN3g8kZ67vbV_f7HspEBgRW2I_">
         <div class="vp-thumb">
+          <div class="vp-blur-bg" style="background-image:url('images/video-thumbs/cozy-baicha.jpg')"></div>
           <img src="images/video-thumbs/cozy-baicha.jpg" alt="Cozy 白茶" loading="lazy" />
           <div class="vp-play"><div class="vp-play-circle">▶</div></div>
         </div>
@@ -450,6 +484,7 @@
 
       <div class="vp-card" data-cat="reels" data-id="11ORIPXYRL2YS6FrTvaoSkSwRATCkkPT3">
         <div class="vp-thumb">
+          <div class="vp-blur-bg" style="background-image:url('https://drive.google.com/thumbnail?id=11ORIPXYRL2YS6FrTvaoSkSwRATCkkPT3&sz=w960')"></div>
           <img src="https://drive.google.com/thumbnail?id=11ORIPXYRL2YS6FrTvaoSkSwRATCkkPT3&sz=w960" alt="水行夏日" loading="lazy" />
           <div class="vp-play"><div class="vp-play-circle">▶</div></div>
         </div>
@@ -479,25 +514,29 @@
     const filterBtns = document.querySelectorAll('.vp-filter-btn');
     const cards = document.querySelectorAll('.vp-card');
 
+    const vpGrid = document.querySelector('.vp-grid');
+
+    function applyFilter(cat) {
+      vpGrid.dataset.active = cat;
+      cards.forEach(card => {
+        if (cat === 'all') {
+          card.classList.toggle('hidden', card.dataset.featured !== 'true');
+        } else {
+          card.classList.toggle('hidden', card.dataset.cat !== cat);
+        }
+      });
+    }
+
     filterBtns.forEach(btn => {
       btn.addEventListener('click', () => {
         filterBtns.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-        const cat = btn.dataset.cat;
-        cards.forEach(card => {
-          if (cat === 'all') {
-            card.classList.toggle('hidden', card.dataset.featured !== 'true');
-          } else {
-            card.classList.toggle('hidden', card.dataset.cat !== cat);
-          }
-        });
+        applyFilter(btn.dataset.cat);
       });
     });
 
-    // 初始載入：全部只顯示 featured
-    cards.forEach(card => {
-      card.classList.toggle('hidden', card.dataset.featured !== 'true');
-    });
+    // 初始載入
+    applyFilter('all');
 
     // Video Lightbox
     const videoLightbox = document.getElementById('video-lightbox');

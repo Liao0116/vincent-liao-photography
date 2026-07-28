@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>訪談影像 | LIAO</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .ft-page { padding: 8rem 5% 5rem; max-width: 1100px; margin: 0 auto; }
+    .ft-header { margin-bottom: 3.5rem; }
+    .ft-back { font-size: 0.78rem; letter-spacing: 0.15em; color: var(--accent); text-decoration: none; display: inline-block; margin-bottom: 1.5rem; }
+    .ft-back:hover { opacity: 0.7; }
+    .ft-tag { font-size: 0.7rem; letter-spacing: 0.3em; color: var(--muted); text-transform: uppercase; margin-bottom: 0.7rem; }
+    .ft-title { font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 300; letter-spacing: 0.08em; margin-bottom: 0.6rem; }
+    .ft-sub { font-size: 0.85rem; color: var(--muted); letter-spacing: 0.1em; }
+
+    .ft-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
+    @media (max-width: 640px) {
+      .ft-grid { grid-template-columns: 1fr; }
+      .ft-page { padding: 6rem 4% 4rem; }
+    }
+
+    .ft-card {
+      cursor: pointer;
+      border-radius: 6px;
+      overflow: hidden;
+      background: var(--surface);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .ft-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.12); }
+
+    .ft-thumb {
+      position: relative;
+      aspect-ratio: 16/9;
+      overflow: hidden;
+    }
+    .ft-thumb img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+    .ft-card:hover .ft-thumb img { transform: scale(1.04); }
+
+    .ft-play {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(0,0,0,0.15);
+      transition: background 0.3s;
+    }
+    .ft-card:hover .ft-play { background: rgba(0,0,0,0.3); }
+    .ft-play-circle {
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.92);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem;
+      padding-left: 4px;
+      color: #2C2416;
+      transition: transform 0.25s;
+    }
+    .ft-card:hover .ft-play-circle { transform: scale(1.1); }
+
+    .ft-info { padding: 1.2rem 1.4rem 1.4rem; }
+    .ft-label {
+      font-size: 0.68rem; letter-spacing: 0.2em;
+      color: var(--accent); text-transform: uppercase; margin-bottom: 0.5rem;
+    }
+    .ft-name { font-size: 1rem; color: var(--text); font-weight: 400; letter-spacing: 0.04em; }
+
+    /* lightbox */
+    .ft-lightbox {
+      display: none; position: fixed; inset: 0; z-index: 9000;
+      background: rgba(0,0,0,0.92);
+      align-items: center; justify-content: center;
+    }
+    .ft-lightbox.open { display: flex; }
+    .ft-lb-inner {
+      position: relative;
+      width: min(880px, 92vw);
+      aspect-ratio: 16/9;
+    }
+    .ft-lb-inner iframe {
+      width: 100%; height: 100%;
+      border: none; border-radius: 4px;
+    }
+    .ft-lb-close {
+      position: absolute; top: -2.5rem; right: 0;
+      background: none; border: none;
+      color: #fff; font-size: 2rem; cursor: pointer; line-height: 1;
+      opacity: 0.8; transition: opacity 0.2s;
+    }
+    .ft-lb-close:hover { opacity: 1; }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">LIAO</a>
+    <ul class="nav-links">
+      <li><a href="index.html#gallery">平面攝影</a></li>
+      <li><a href="video.html">動態影像</a></li>
+      <li><a href="index.html#about">關於</a></li>
+      <li><a href="index.html#contact">聯絡</a></li>
+    </ul>
+    <button class="nav-burger" aria-label="menu">&#9776;</button>
+  </nav>
+
+  <div class="ft-page">
+    <div class="ft-header">
+      <a href="video.html" class="ft-back">← 返回動態影像</a>
+      <p class="ft-tag">INTERVIEW</p>
+      <h1 class="ft-title">訪談影像</h1>
+      <p class="ft-sub">藝人專訪・品牌對談</p>
+    </div>
+
+    <div class="ft-grid">
+
+      <div class="ft-card" data-id="1XyzBAIQNHNPgFzRlGokkkJ8zl8XzcMAo">
+        <div class="ft-thumb">
+          <img src="images/video-thumbs/hsu-weiying.jpg" alt="許瑋甯樂當壞女人？" loading="lazy" />
+          <div class="ft-play"><div class="ft-play-circle">▶</div></div>
+        </div>
+        <div class="ft-info">
+          <div class="ft-label">訪談</div>
+          <div class="ft-name">許瑋甯樂當壞女人？</div>
+        </div>
+      </div>
+
+      <div class="ft-card" data-id="1__eaYauxIyT8pJKw92h166Sv-Lo9t3_E">
+        <div class="ft-thumb">
+          <img src="images/video-thumbs/lin-yichen.jpg" alt="林依晨樂見被貼標籤？" loading="lazy" />
+          <div class="ft-play"><div class="ft-play-circle">▶</div></div>
+        </div>
+        <div class="ft-info">
+          <div class="ft-label">訪談</div>
+          <div class="ft-name">林依晨樂見被貼標籤？</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Lightbox -->
+  <div class="ft-lightbox" id="ft-lightbox">
+    <div class="ft-lb-inner">
+      <button class="ft-lb-close" id="ft-lb-close">&times;</button>
+      <iframe id="ft-lb-iframe" src="" allowfullscreen allow="autoplay"></iframe>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p>&copy; 2026 LIAO. All rights reserved.</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    const cards = document.querySelectorAll('.ft-card');
+    const lightbox = document.getElementById('ft-lightbox');
+    const iframe = document.getElementById('ft-lb-iframe');
+    const closeBtn = document.getElementById('ft-lb-close');
+
+    cards.forEach(card => {
+      card.addEventListener('click', () => {
+        const id = card.dataset.id;
+        if (!id) return;
+        iframe.src = `https://drive.google.com/file/d/${id}/preview?autoplay=1`;
+        lightbox.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      iframe.src = '';
+      document.body.style.overflow = '';
+    }
+
+    closeBtn.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+  </script>
+</body>
+</html>

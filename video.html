@@ -97,6 +97,11 @@
       aspect-ratio: 16/9;
     }
 
+    /* Cozy 白茶 雙圖切換 */
+    .thumb-landscape { display: none; }
+    .vp-grid[data-active="all"] .thumb-portrait { display: none; }
+    .vp-grid[data-active="all"] .thumb-landscape { display: block; }
+
     @media (max-width: 1100px) {
       .vp-grid { grid-template-columns: repeat(3, 1fr); }
     }
@@ -449,7 +454,8 @@
 
       <div class="vp-card" data-cat="reels" data-featured="true" data-id="1eWsX9mWN3g8kZ67vbV_f7HspEBgRW2I_">
         <div class="vp-thumb">
-          <img src="images/video-thumbs/cozy-baicha.jpg" alt="Cozy 白茶" loading="lazy" style="object-position: center 10%;" />
+          <img class="thumb-portrait" src="images/video-thumbs/cozy-baicha.jpg" alt="Cozy 白茶" loading="lazy" />
+          <img class="thumb-landscape" src="images/video-thumbs/cozy-baicha-16x9.jpg" alt="Cozy 白茶" loading="lazy" />
           <div class="vp-play"><div class="vp-play-circle">▶</div></div>
         </div>
         <div class="vp-info">

@@ -91,32 +91,10 @@
     .vp-card[data-cat="reels"] .vp-thumb {
       aspect-ratio: 9/16;
     }
-    .vp-card[data-cat="reels"] .vp-thumb img {
-      object-fit: contain;
-      position: relative;
-      z-index: 1;
-    }
-    .vp-card[data-cat="reels"] .vp-play {
-      z-index: 2;
-    }
 
-    /* 模糊背景：預設隱藏，全部模式下顯示 */
-    .vp-blur-bg {
-      display: none;
-      position: absolute;
-      inset: -15%;
-      background-size: cover;
-      background-position: center;
-      filter: blur(20px) brightness(0.5) saturate(1.2);
-      z-index: 0;
-    }
-
-    /* 全部 tab：Reels 改回 16:9 + 模糊背景 */
+    /* 全部 tab：Reels 改回 16:9，直接裁切 */
     .vp-grid[data-active="all"] .vp-card[data-cat="reels"] .vp-thumb {
       aspect-ratio: 16/9;
-    }
-    .vp-grid[data-active="all"] .vp-blur-bg {
-      display: block;
     }
 
     @media (max-width: 1100px) {
@@ -460,7 +438,6 @@
       <!-- ===== Reels ===== -->
       <div class="vp-card" data-cat="reels" data-featured="true" data-id="1BAlHfTHudNe2dPxbf_IQov39hqxqDkPq">
         <div class="vp-thumb">
-          <div class="vp-blur-bg" style="background-image:url('images/video-thumbs/sanshang.jpg')"></div>
           <img src="images/video-thumbs/sanshang.jpg" alt="業配 三上優雅" loading="lazy" />
           <div class="vp-play"><div class="vp-play-circle">▶</div></div>
         </div>
@@ -472,7 +449,6 @@
 
       <div class="vp-card" data-cat="reels" data-featured="true" data-id="1eWsX9mWN3g8kZ67vbV_f7HspEBgRW2I_">
         <div class="vp-thumb">
-          <div class="vp-blur-bg" style="background-image:url('images/video-thumbs/cozy-baicha.jpg')"></div>
           <img src="images/video-thumbs/cozy-baicha.jpg" alt="Cozy 白茶" loading="lazy" />
           <div class="vp-play"><div class="vp-play-circle">▶</div></div>
         </div>
@@ -484,7 +460,6 @@
 
       <div class="vp-card" data-cat="reels" data-id="11ORIPXYRL2YS6FrTvaoSkSwRATCkkPT3">
         <div class="vp-thumb">
-          <div class="vp-blur-bg" style="background-image:url('https://drive.google.com/thumbnail?id=11ORIPXYRL2YS6FrTvaoSkSwRATCkkPT3&sz=w960')"></div>
           <img src="https://drive.google.com/thumbnail?id=11ORIPXYRL2YS6FrTvaoSkSwRATCkkPT3&sz=w960" alt="水行夏日" loading="lazy" />
           <div class="vp-play"><div class="vp-play-circle">▶</div></div>
         </div>

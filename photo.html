@@ -126,72 +126,7 @@
       letter-spacing: 0.03em;
     }
 
-    /* lightbox */
-    .ph-lightbox {
-      display: none;
-      position: fixed;
-      inset: 0;
-      z-index: 9000;
-      background: rgba(0,0,0,0.94);
-      align-items: center;
-      justify-content: center;
-    }
-
-    .ph-lightbox.open { display: flex; }
-
-    .ph-lb-inner {
-      position: relative;
-      max-width: 92vw;
-      max-height: 90vh;
-    }
-
-    .ph-lb-inner img {
-      max-width: 92vw;
-      max-height: 88vh;
-      width: auto;
-      height: auto;
-      object-fit: contain;
-      display: block;
-      border-radius: 2px;
-    }
-
-    .ph-lb-close {
-      position: absolute;
-      top: -2.5rem;
-      right: 0;
-      background: none;
-      border: none;
-      color: #fff;
-      font-size: 2rem;
-      cursor: pointer;
-      line-height: 1;
-      opacity: 0.8;
-      transition: opacity 0.2s;
-    }
-
-    .ph-lb-close:hover { opacity: 1; }
-
-    .ph-lb-prev,
-    .ph-lb-next {
-      position: fixed;
-      top: 50%;
-      transform: translateY(-50%);
-      background: none;
-      border: none;
-      color: #fff;
-      font-size: 2.5rem;
-      cursor: pointer;
-      opacity: 0.6;
-      padding: 1rem;
-      transition: opacity 0.2s;
-      line-height: 1;
-    }
-
-    .ph-lb-prev:hover,
-    .ph-lb-next:hover { opacity: 1; }
-
-    .ph-lb-prev { left: 1rem; }
-    .ph-lb-next { right: 1rem; }
+    .photo-card { cursor: pointer; }
   </style>
 </head>
 <body>
@@ -360,16 +295,6 @@
     </div>
   </div>
 
-  <!-- Lightbox -->
-  <div class="ph-lightbox" id="ph-lightbox">
-    <div class="ph-lb-inner">
-      <button class="ph-lb-close" id="ph-lb-close">&times;</button>
-      <img src="" alt="" id="ph-lb-img" />
-    </div>
-    <button class="ph-lb-prev" id="ph-lb-prev">&#8249;</button>
-    <button class="ph-lb-next" id="ph-lb-next">&#8250;</button>
-  </div>
-
   <footer class="footer">
     <p>&copy; 2026 LIAO. All rights reserved.</p>
   </footer>
@@ -392,52 +317,13 @@
       });
     });
 
-    // Lightbox
-    const lightbox = document.getElementById('ph-lightbox');
-    const lbImg = document.getElementById('ph-lb-img');
-    const lbClose = document.getElementById('ph-lb-close');
-    const lbPrev = document.getElementById('ph-lb-prev');
-    const lbNext = document.getElementById('ph-lb-next');
-    let currentIndex = 0;
-    let visibleCards = [];
-
-    function openLightbox(index) {
-      visibleCards = [...document.querySelectorAll('.photo-card:not([style*="none"])')];
-      currentIndex = index;
-      const card = visibleCards[currentIndex];
-      const img = card.querySelector('img');
-      lbImg.src = img.src;
-      lbImg.alt = img.alt;
-      lightbox.classList.add('open');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeLightbox() {
-      lightbox.classList.remove('open');
-      lbImg.src = '';
-      document.body.style.overflow = '';
-    }
-
-    function navigate(dir) {
-      currentIndex = (currentIndex + dir + visibleCards.length) % visibleCards.length;
-      const img = visibleCards[currentIndex].querySelector('img');
-      lbImg.src = img.src;
-      lbImg.alt = img.alt;
-    }
-
-    document.querySelectorAll('.photo-card').forEach((card, i) => {
-      card.addEventListener('click', () => openLightbox(i));
-    });
-
-    lbClose.addEventListener('click', closeLightbox);
-    lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
-    lbPrev.addEventListener('click', () => navigate(-1));
-    lbNext.addEventListener('click', () => navigate(1));
-    document.addEventListener('keydown', e => {
-      if (!lightbox.classList.contains('open')) return;
-      if (e.key === 'Escape') closeLightbox();
-      if (e.key === 'ArrowLeft') navigate(-1);
-      if (e.key === 'ArrowRight') navigate(1);
+    // 點擊卡片 → 進入 gallery 頁面
+    document.querySelectorAll('.photo-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const src = card.querySelector('img').getAttribute('src');
+        const slug = src.split('/').pop().replace(/\.(jpg|jpeg|png)$/i, '');
+        window.location.href = 'gallery.html?event=' + encodeURIComponent(slug);
+      });
     });
   </script>
 </body>

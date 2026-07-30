@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>作品集 | LIAO</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .gallery-page { padding: 8rem 10% 5rem; }
+
+    .gallery-back {
+      font-size: 0.78rem; letter-spacing: 0.15em;
+      color: var(--accent); text-decoration: none;
+      display: inline-block; margin-bottom: 1.8rem;
+    }
+    .gallery-back:hover { opacity: 0.7; }
+
+    .gallery-header { margin-bottom: 3rem; }
+    .gallery-tag {
+      font-size: 0.7rem; letter-spacing: 0.3em;
+      color: var(--muted); text-transform: uppercase; margin-bottom: 0.7rem;
+    }
+    .gallery-title {
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 300; letter-spacing: 0.08em; margin-bottom: 0.7rem;
+    }
+    .gallery-meta {
+      display: flex; flex-wrap: wrap; gap: 0.4rem 0.8rem;
+      align-items: center;
+    }
+    .gallery-date { font-size: 0.78rem; color: var(--muted); letter-spacing: 0.08em; }
+    .gallery-labels { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+    .gallery-label-tag {
+      font-size: 0.7rem; letter-spacing: 0.12em;
+      color: var(--accent); padding: 0.15rem 0.6rem;
+      border: 1px solid var(--accent); border-radius: 2px;
+    }
+
+    .gallery-count {
+      font-size: 0.78rem; color: var(--muted);
+      letter-spacing: 0.06em; margin-bottom: 2rem;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.8rem;
+    }
+    @media (max-width: 1100px) { .gallery-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 700px)  { .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 0.5rem; } }
+
+    .gallery-item {
+      cursor: pointer;
+      aspect-ratio: 3/2;
+      overflow: hidden;
+      border-radius: 3px;
+      background: var(--surface);
+    }
+    .gallery-item img {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+      transition: transform 0.35s ease;
+    }
+    .gallery-item:hover img { transform: scale(1.04); }
+
+    /* Lightbox */
+    .glb {
+      display: none; position: fixed; inset: 0; z-index: 9000;
+      background: rgba(0,0,0,0.94);
+      align-items: center; justify-content: center;
+    }
+    .glb.open { display: flex; }
+    .glb-inner {
+      position: relative;
+      max-width: min(1200px, 96vw);
+      max-height: 92vh;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .glb-inner img {
+      max-width: 100%; max-height: 92vh;
+      object-fit: contain; border-radius: 3px;
+      display: block;
+    }
+    .glb-close {
+      position: fixed; top: 1.2rem; right: 1.5rem;
+      background: none; border: none;
+      color: #fff; font-size: 2.2rem; cursor: pointer;
+      opacity: 0.75; transition: opacity 0.2s; line-height: 1;
+    }
+    .glb-close:hover { opacity: 1; }
+    .glb-prev, .glb-next {
+      position: fixed; top: 50%; transform: translateY(-50%);
+      background: rgba(255,255,255,0.1); border: none;
+      color: #fff; font-size: 2rem; cursor: pointer;
+      padding: 0.8rem 1rem; border-radius: 3px;
+      opacity: 0.7; transition: opacity 0.2s, background 0.2s;
+    }
+    .glb-prev:hover, .glb-next:hover { opacity: 1; background: rgba(255,255,255,0.2); }
+    .glb-prev { left: 0.8rem; }
+    .glb-next { right: 0.8rem; }
+    .glb-counter {
+      position: fixed; bottom: 1.2rem; left: 50%; transform: translateX(-50%);
+      color: rgba(255,255,255,0.6); font-size: 0.8rem; letter-spacing: 0.12em;
+    }
+
+    @media (max-width: 600px) {
+      .gallery-page { padding: 6rem 3% 4rem; }
+      .glb-prev { left: 0.3rem; }
+      .glb-next { right: 0.3rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">LIAO</a>
+    <ul class="nav-links">
+      <li><a href="index.html">首頁</a></li>
+      <li><a href="photo.html" class="active">平面攝影</a></li>
+      <li><a href="video.html">動態影像</a></li>
+      <li><a href="index.html#about">關於</a></li>
+      <li><a href="index.html#contact">聯絡</a></li>
+    </ul>
+    <button class="nav-burger" aria-label="menu">&#9776;</button>
+  </nav>
+
+  <div class="gallery-page">
+    <a href="photo.html" class="gallery-back">← 返回平面攝影</a>
+
+    <div class="gallery-header">
+      <p class="gallery-tag" id="g-tag">PHOTOGRAPHY</p>
+      <h1 class="gallery-title" id="g-title"></h1>
+      <div class="gallery-meta">
+        <span class="gallery-date" id="g-date"></span>
+        <div class="gallery-labels" id="g-labels"></div>
+      </div>
+    </div>
+
+    <p class="gallery-count" id="g-count"></p>
+    <div class="gallery-grid" id="gallery-grid"></div>
+  </div>
+
+  <!-- Lightbox -->
+  <div class="glb" id="glb">
+    <button class="glb-close" id="glb-close">&times;</button>
+    <button class="glb-prev" id="glb-prev">&#8249;</button>
+    <div class="glb-inner"><img id="glb-img" src="" alt="" /></div>
+    <button class="glb-next" id="glb-next">&#8250;</button>
+    <span class="glb-counter" id="glb-counter"></span>
+  </div>
+
+  <footer class="footer">
+    <p>&copy; 2026 LIAO. All rights reserved.</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/gallery-data.js"></script>
+  <script>
+    const params = new URLSearchParams(location.search);
+    const slug = params.get('event') || '';
+    const event = GALLERY_DATA[slug];
+
+    if (!event) {
+      document.getElementById('g-title').textContent = '找不到作品';
+    } else {
+      document.title = event.title + ' | LIAO';
+      document.getElementById('g-title').textContent = event.title;
+      document.getElementById('g-date').textContent = event.date;
+
+      const labelsEl = document.getElementById('g-labels');
+      event.tags.forEach(tag => {
+        const span = document.createElement('span');
+        span.className = 'gallery-label-tag';
+        span.textContent = tag;
+        labelsEl.appendChild(span);
+      });
+
+      document.getElementById('g-count').textContent = event.photos.length + ' 張';
+
+      const grid = document.getElementById('gallery-grid');
+      event.photos.forEach((filename, i) => {
+        const div = document.createElement('div');
+        div.className = 'gallery-item';
+        div.dataset.index = i;
+        const img = document.createElement('img');
+        img.src = `images/photo/gallery/${slug}/${filename}`;
+        img.alt = event.title;
+        img.loading = 'lazy';
+        div.appendChild(img);
+        div.addEventListener('click', () => openLightbox(i));
+        grid.appendChild(div);
+      });
+    }
+
+    // Lightbox
+    const glb = document.getElementById('glb');
+    const glbImg = document.getElementById('glb-img');
+    const glbCounter = document.getElementById('glb-counter');
+    let currentIdx = 0;
+
+    function openLightbox(idx) {
+      currentIdx = idx;
+      updateLightbox();
+      glb.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function updateLightbox() {
+      const filename = event.photos[currentIdx];
+      glbImg.src = `images/photo/gallery/${slug}/${filename}`;
+      glbCounter.textContent = (currentIdx + 1) + ' / ' + event.photos.length;
+    }
+
+    function closeLightbox() {
+      glb.classList.remove('open');
+      glbImg.src = '';
+      document.body.style.overflow = '';
+    }
+
+    document.getElementById('glb-close').addEventListener('click', closeLightbox);
+    glb.addEventListener('click', e => { if (e.target === glb) closeLightbox(); });
+
+    document.getElementById('glb-prev').addEventListener('click', () => {
+      if (!event) return;
+      currentIdx = (currentIdx - 1 + event.photos.length) % event.photos.length;
+      updateLightbox();
+    });
+    document.getElementById('glb-next').addEventListener('click', () => {
+      if (!event) return;
+      currentIdx = (currentIdx + 1) % event.photos.length;
+      updateLightbox();
+    });
+
+    document.addEventListener('keydown', e => {
+      if (!glb.classList.contains('open')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') { currentIdx = (currentIdx - 1 + event.photos.length) % event.photos.length; updateLightbox(); }
+      if (e.key === 'ArrowRight') { currentIdx = (currentIdx + 1) % event.photos.length; updateLightbox(); }
+    });
+  </script>
+</body>
+</html>

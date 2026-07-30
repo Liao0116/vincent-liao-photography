@@ -5,6 +5,45 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>LIAO</title>
   <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .clients-section {
+      padding: 3rem 6% 3.4rem;
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      text-align: center;
+    }
+    .clients-eyebrow {
+      font-size: 0.67rem;
+      letter-spacing: 0.38em;
+      color: rgba(0,0,0,0.28);
+      text-transform: uppercase;
+      margin-bottom: 2.2rem;
+    }
+    .clients-logos {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      align-items: center;
+      justify-items: center;
+      gap: 2rem 2.4rem;
+    }
+    .clients-logos img {
+      height: 33px;
+      width: auto;
+      max-width: 160px;
+      filter: brightness(0);
+      opacity: 0.32;
+      transition: opacity 0.3s;
+    }
+    .clients-logos img:hover { opacity: 0.7; }
+    @media (max-width: 900px) {
+      .clients-logos { grid-template-columns: repeat(4, 1fr); gap: 1.8rem 2rem; }
+    }
+    @media (max-width: 600px) {
+      .clients-logos { grid-template-columns: repeat(3, 1fr); gap: 1.4rem 1.6rem; }
+      .clients-logos img { height: 26px; max-width: 120px; }
+    }
+  </style>
 </head>
 <body>
 
@@ -12,7 +51,8 @@
   <nav class="nav">
     <a href="#" class="nav-logo">LIAO</a>
     <ul class="nav-links">
-      <li><a href="#gallery">平面攝影</a></li>
+      <li><a href="index.html">首頁</a></li>
+      <li><a href="photo.html">平面攝影</a></li>
       <li><a href="video.html">動態影像</a></li>
       <li><a href="#about">關於</a></li>
       <li><a href="#contact">聯絡</a></li>
@@ -67,7 +107,7 @@
             <img src="images/nangang/BLA00806.jpg" alt="Acer展場人潮" loading="lazy" />
             <img src="images/nangang/nangang-overview.jpg" alt="南港展覽館全場" loading="lazy" />
             <img src="images/nangang/LIA09813.jpg" alt="國際合作" loading="lazy" />
-            <img src="images/nangang/BLA09672.jpg" alt="展場貴賓" loading="lazy" />
+            <img src="images/nangang/BLA09673.jpg" alt="展場貴賓" loading="lazy" />
           </div>
         </div>
       </div>
@@ -464,6 +504,36 @@
 
     </div><!-- /video-section -->
 
+  </section>
+
+  <!-- CLIENT LOGOS -->
+  <section class="clients-section">
+    <p class="clients-eyebrow">合作品牌 Clients</p>
+    <div class="clients-logos">
+      <img src="images/logos/taitra.svg" alt="TAITRA 外貿協會" />
+      <img src="images/logos/new-taipei.svg" alt="新北市政府" />
+      <img src="images/logos/changhua.png" alt="彰化縣政府" />
+      <img src="images/logos/nantou.png" alt="南投縣政府" />
+      <img src="images/logos/asus.svg" alt="Asus" />
+      <img src="images/logos/acer.svg" alt="Acer" />
+      <img src="images/logos/computex.svg" alt="Computex" />
+      <img src="images/logos/office.svg" alt="Microsoft Office" />
+      <img src="images/logos/vivo.svg" alt="vivo" />
+      <img src="images/logos/coca-cola.svg" alt="可口可樂 Coca-Cola" />
+      <img src="images/logos/carrefour.png" alt="家樂福 Carrefour" />
+      <img src="images/logos/pxmart.svg" alt="全聯 PX Mart" />
+      <img src="images/logos/aov.png" alt="傳說對決 Arena of Valor" />
+      <img src="images/logos/pilots.avif" alt="桃園領航猿" />
+      <img src="images/logos/hrc.svg" alt="Hard Rock Cafe" />
+      <img src="images/logos/curves.svg" alt="Curves" />
+      <img src="images/logos/hueiyeh.svg" alt="輝葉" />
+      <img src="images/logos/young-living.png" alt="Young Living" />
+      <img src="images/logos/aj2.png" alt="AJ2" />
+      <img src="images/logos/backbone.svg" alt="Backbone" />
+      <img src="images/logos/round2.svg" alt="Round2 Hair Salon" />
+      <img src="images/logos/urban-paradise.svg" alt="Urban Paradise" />
+      <img src="images/logos/decopop.png" alt="decopop" />
+    </div>
   </section>
 
   <!-- ABOUT -->

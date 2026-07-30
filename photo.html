@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>平面攝影 | LIAO</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .photo-page {
+      padding: 8rem 10% 5rem;
+    }
+
+    .photo-header {
+      margin-bottom: 3.5rem;
+    }
+
+    .photo-tag {
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 0.7rem;
+    }
+
+    .photo-title {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 300;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.6rem;
+    }
+
+    .photo-sub {
+      font-size: 0.85rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+    }
+
+    /* 分類 tabs */
+    .photo-tabs {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1rem;
+    }
+
+    .photo-tab {
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      padding: 0.45rem 1.1rem;
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      background: none;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .photo-tab:hover,
+    .photo-tab.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    /* 作品 grid */
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem 1.2rem;
+    }
+
+    @media (max-width: 1100px) {
+      .photo-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 900px) {
+      .photo-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .photo-page { padding: 6rem 3% 4rem; }
+      .photo-grid { grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
+    }
+
+    .photo-card {
+      cursor: pointer;
+      background: var(--surface);
+    }
+
+    .photo-card-thumb {
+      position: relative;
+      aspect-ratio: 3/2;
+      overflow: hidden;
+      background: var(--surface);
+    }
+
+    .photo-card-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .photo-card:hover .photo-card-thumb img {
+      transform: scale(1.05);
+    }
+
+    .photo-card-info {
+      padding: 0.5rem 0.8rem 0.6rem;
+      background: var(--surface);
+    }
+
+    .photo-card-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 0.3rem;
+    }
+
+    .photo-card-name {
+      font-size: 0.88rem;
+      color: var(--text);
+      font-weight: 400;
+      letter-spacing: 0.03em;
+    }
+
+    /* lightbox */
+    .ph-lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9000;
+      background: rgba(0,0,0,0.94);
+      align-items: center;
+      justify-content: center;
+    }
+
+    .ph-lightbox.open { display: flex; }
+
+    .ph-lb-inner {
+      position: relative;
+      max-width: 92vw;
+      max-height: 90vh;
+    }
+
+    .ph-lb-inner img {
+      max-width: 92vw;
+      max-height: 88vh;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      display: block;
+      border-radius: 2px;
+    }
+
+    .ph-lb-close {
+      position: absolute;
+      top: -2.5rem;
+      right: 0;
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 2rem;
+      cursor: pointer;
+      line-height: 1;
+      opacity: 0.8;
+      transition: opacity 0.2s;
+    }
+
+    .ph-lb-close:hover { opacity: 1; }
+
+    .ph-lb-prev,
+    .ph-lb-next {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 2.5rem;
+      cursor: pointer;
+      opacity: 0.6;
+      padding: 1rem;
+      transition: opacity 0.2s;
+      line-height: 1;
+    }
+
+    .ph-lb-prev:hover,
+    .ph-lb-next:hover { opacity: 1; }
+
+    .ph-lb-prev { left: 1rem; }
+    .ph-lb-next { right: 1rem; }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">LIAO</a>
+    <ul class="nav-links">
+      <li><a href="index.html">首頁</a></li>
+      <li><a href="photo.html">平面攝影</a></li>
+      <li><a href="video.html">動態影像</a></li>
+      <li><a href="index.html#about">關於</a></li>
+      <li><a href="index.html#contact">聯絡</a></li>
+    </ul>
+    <button class="nav-burger" aria-label="menu">&#9776;</button>
+  </nav>
+
+  <div class="photo-page">
+    <div class="photo-header">
+      <p class="photo-tag">PHOTOGRAPHY</p>
+      <h1 class="photo-title">平面攝影</h1>
+      <p class="photo-sub">商業攝影・展覽紀錄・企業活動・形象照・舞蹈・電競</p>
+    </div>
+
+    <div class="photo-tabs">
+      <button class="photo-tab active" data-cat="all">全部</button>
+      <button class="photo-tab" data-cat="activity">活動</button>
+      <button class="photo-tab" data-cat="exhibition">展覽攝影</button>
+      <button class="photo-tab" data-cat="corporate">企業活動</button>
+      <button class="photo-tab" data-cat="portrait">形象照</button>
+      <button class="photo-tab" data-cat="dance">舞蹈</button>
+      <button class="photo-tab" data-cat="esports">電競</button>
+    </div>
+
+    <div class="photo-grid" id="photo-grid">
+
+      <div class="photo-card" data-cat="exhibition">
+        <div class="photo-card-thumb"><img src="images/photo/activity/2026-06-03-Acer.jpg" alt="Computex・Acer" loading="lazy" /></div>
+        <div class="photo-card-info"><div class="photo-card-name">Computex・Acer</div><div class="photo-card-label">#展覽攝影 #南港展覽館</div></div>
+      </div>
+
+      <div class="photo-card" data-cat="exhibition">
+        <div class="photo-card-thumb"><img src="images/photo/activity/2026-06-02-Acer.jpg" alt="Computex・Acer" loading="lazy" /></div>
+        <div class="photo-card-info"><div class="photo-card-name">Computex・Acer</div><div class="photo-card-label">#展覽攝影 #南港展覽館</div></div>
+      </div>
+
+      <div class="photo-card" data-cat="activity">
+        <div class="photo-card-thumb"><img src="images/photo/activity/2026-07-05-巴黎.jpg" alt="巴黎・悠樂芳" loading="lazy" /></div>
+        <div class="photo-card-info"><div class="photo-card-name">巴黎・悠樂芳</div><div class="photo-card-label">#活動 #悠樂芳</div></div>
+      </div>
+
+      <div class="photo-card" data-cat="activity">
+        <div class="photo-card-thumb"><img src="images/photo/activity/2026-07-04-巴黎.jpg" alt="巴黎・悠樂芳" loading="lazy" /></div>
+        <div class="photo-card-info"><div class="photo-card-name">巴黎・悠樂芳</div><div class="photo-card-label">#活動 #悠樂芳</div></div>
+      </div>
+
+      <div class="photo-card" data-cat="activity">
+        <div class="photo-card-thumb"><img src="images/photo/activity/2026-07-01-巴黎.jpg" alt="巴黎・悠樂芳" loading="lazy" /></div>
+        <div class="photo-card-info"><div class="photo-card-name">巴黎・悠樂芳</div><div class="photo-card-label">#活動 #悠樂芳</div></div>
+      </div>
+
+      <div class="photo-card" data-cat="exhibition">
+        <div class="photo-card-thumb"><img src="images/photo/activity/2026-06-27-國際醫療展.jpg" alt="國際醫療展" loading="lazy" /></div>
+        <div class="photo-card-info"><div class="photo-card-name">國際醫療展</div><div class="photo-card-label">#展覽攝影 #外貿協會</div></div>
+      </div>
+
+      <div class="photo-card" data-cat="exhibition">
+        <div class="photo-card-thumb"><img src="images/photo/activity/2026-06-26-國際醫療展.jpg" alt="國際醫療展" loading="lazy" /></div>
+        <div class="photo-card-info"><div class="photo-card-name">國際醫療展</div><div class="photo-card-label">#展覽攝影 #外貿協會</div></div>
+      </div>
+
+      <div class="photo-card" data-cat="exhibition">
+        <div class="photo-card-thumb"><img src="images/photo/activity/2026-06-25-國際醫療展.jpg" alt="國際醫療展" loading="lazy" /></div>
+        <div class="photo-card-info"><div class="photo-card-name">國際醫療展</div><div class="photo-card-label">#展覽攝影 #外貿協會</div></div>
+      </div>
+
+      <div class="photo-card" data-cat="esports">
+        <div class="photo-card-thumb"><img src="images/photo/activity/2026-06-06-傳說對決.jpg" alt="傳說對決" loading="lazy" /></div>
+        <div class="photo-card-info"><div class="photo-card-name">傳說對決</div><div class="photo-card-label">#電競</div></div>
+      </div>
+
+      <div class="photo-card" data-cat="activity">
+        <div class="photo-card-thumb"><img src="images/photo/activity/2026-05-21-寵物商業同業公會.jpg" alt="寵物商業同業公會" loading="lazy" /></div>
+        <div class="photo-card-info"><div class="photo-card-name">寵物商業同業公會</div><div class="photo-card-label">#活動 #寵物</div></div>
+      </div>
+
+      <div class="photo-card" data-cat="activity">
+        <div class="photo-card-thumb"><img src="images/photo/activity/2026-05-16-放電家庭日.jpg" alt="放電家庭日" loading="lazy" /></div>
+        <div class="photo-card-info"><div class="photo-card-name">放電家庭日</div><div class="photo-card-label">#活動 #泓德能源</div></div>
+      </div>
+
+      <div class="photo-card" data-cat="activity">
+        <div class="photo-card-thumb"><img src="images/photo/activity/2026-04-25-匹克球.jpg" alt="匹克球" loading="lazy" /></div>
+        <div class="photo-card-info"><div class="photo-card-name">匹克球</div><div class="photo-card-label">#活動 #運動</div></div>
+      </div>
+
+      <div class="photo-card" data-cat="exhibition">
+        <div class="photo-card-thumb"><img src="images/photo/activity/2026-04-17-360-MOBILITY-Mega-Shows.jpg" alt="360° MOBILITY" loading="lazy" /></div>
+        <div class="photo-card-info"><div class="photo-card-name">360° MOBILITY</div><div class="photo-card-label">#展覽攝影 #外貿協會</div></div>
+      </div>
+
+      <div class="photo-card" data-cat="exhibition">
+        <div class="photo-card-thumb"><img src="images/photo/activity/2026-04-16-360-MOBILITY-Mega-Shows.jpg" alt="360° MOBILITY" loading="lazy" /></div>
+        <div class="photo-card-info"><div class="photo-card-name">360° MOBILITY</div><div class="photo-card-label">#展覽攝影 #外貿協會</div></div>
+      </div>
+
+      <div class="photo-card" data-cat="exhibition">
+        <div class="photo-card-thumb"><img src="images/photo/activity/2026-04-14-360-MOBILITY-Mega-Shows.jpg" alt="360° MOBILITY" loading="lazy" /></div>
+        <div class="photo-card-info"><div class="photo-card-name">360° MOBILITY</div><div class="photo-card-label">#展覽攝影 #外貿協會</div></div>
+      </div>
+
+      <div class="photo-card" data-cat="exhibition">
+        <div class="photo-card-thumb"><img src="images/photo/activity/2026-03-25-Taispo.jpg" alt="Taispo 台灣國際運動及健身展" loading="lazy" /></div>
+        <div class="photo-card-info"><div class="photo-card-name">Taispo 台灣國際運動及健身展</div><div class="photo-card-label">#展覽攝影 #外貿協會</div></div>
+      </div>
+
+      <div class="photo-card" data-cat="activity">
+        <div class="photo-card-thumb"><img src="images/photo/activity/2025-03-08-生命無限姿彩.jpg" alt="生命無限姿彩" loading="lazy" /></div>
+        <div class="photo-card-info"><div class="photo-card-name">生命無限姿彩</div><div class="photo-card-label">#活動 #全美世界</div></div>
+      </div>
+
+      <div class="photo-card" data-cat="activity">
+        <div class="photo-card-thumb"><img src="images/photo/activity/2024-11-16-沖繩.jpg" alt="沖繩・悠樂芳" loading="lazy" /></div>
+        <div class="photo-card-info"><div class="photo-card-name">沖繩・悠樂芳</div><div class="photo-card-label">#活動 #悠樂芳</div></div>
+      </div>
+
+      <div class="photo-card" data-cat="activity">
+        <div class="photo-card-thumb"><img src="images/photo/activity/2024-11-15-沖繩.jpg" alt="沖繩・悠樂芳" loading="lazy" /></div>
+        <div class="photo-card-info"><div class="photo-card-name">沖繩・悠樂芳</div><div class="photo-card-label">#活動 #悠樂芳</div></div>
+      </div>
+
+      <div class="photo-card" data-cat="exhibition">
+        <div class="photo-card-thumb"><img src="images/photo/activity/2024-10-06-台灣國際智慧能源週.jpg" alt="台灣國際智慧能源週" loading="lazy" /></div>
+        <div class="photo-card-info"><div class="photo-card-name">台灣國際智慧能源週</div><div class="photo-card-label">#展覽攝影 #南港展覽館</div></div>
+      </div>
+
+      <div class="photo-card" data-cat="exhibition">
+        <div class="photo-card-thumb"><img src="images/photo/activity/2024-10-05-台灣國際智慧能源週.jpg" alt="台灣國際智慧能源週" loading="lazy" /></div>
+        <div class="photo-card-info"><div class="photo-card-name">台灣國際智慧能源週</div><div class="photo-card-label">#展覽攝影 #南港展覽館</div></div>
+      </div>
+
+      <div class="photo-card" data-cat="exhibition">
+        <div class="photo-card-thumb"><img src="images/photo/activity/2024-10-04-台灣國際智慧能源週.jpg" alt="台灣國際智慧能源週" loading="lazy" /></div>
+        <div class="photo-card-info"><div class="photo-card-name">台灣國際智慧能源週</div><div class="photo-card-label">#展覽攝影 #南港展覽館</div></div>
+      </div>
+
+      <div class="photo-card" data-cat="activity">
+        <div class="photo-card-thumb"><img src="images/photo/activity/2023-05-27-AON高爾夫球.jpg" alt="AON 高爾夫球" loading="lazy" /></div>
+        <div class="photo-card-info"><div class="photo-card-name">AON 高爾夫球</div><div class="photo-card-label">#活動 #運動</div></div>
+      </div>
+
+      <div class="photo-card" data-cat="activity">
+        <div class="photo-card-thumb"><img src="images/photo/activity/2022-11-08-拉斯維加斯.jpg" alt="拉斯維加斯・夢想家" loading="lazy" /></div>
+        <div class="photo-card-info"><div class="photo-card-name">拉斯維加斯・夢想家</div><div class="photo-card-label">#活動 #夢想家</div></div>
+      </div>
+
+      <div class="photo-card" data-cat="activity">
+        <div class="photo-card-thumb"><img src="images/photo/activity/2021-10-03-綠色和平.jpg" alt="綠色和平" loading="lazy" /></div>
+        <div class="photo-card-info"><div class="photo-card-name">綠色和平</div><div class="photo-card-label">#活動 #企業</div></div>
+      </div>
+
+      <div class="photo-card" data-cat="activity">
+        <div class="photo-card-thumb"><img src="images/photo/activity/2019-12-27-棒球.jpg" alt="棒球" loading="lazy" /></div>
+        <div class="photo-card-info"><div class="photo-card-name">棒球</div><div class="photo-card-label">#活動 #運動</div></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Lightbox -->
+  <div class="ph-lightbox" id="ph-lightbox">
+    <div class="ph-lb-inner">
+      <button class="ph-lb-close" id="ph-lb-close">&times;</button>
+      <img src="" alt="" id="ph-lb-img" />
+    </div>
+    <button class="ph-lb-prev" id="ph-lb-prev">&#8249;</button>
+    <button class="ph-lb-next" id="ph-lb-next">&#8250;</button>
+  </div>
+
+  <footer class="footer">
+    <p>&copy; 2026 LIAO. All rights reserved.</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    // 分類 tabs
+    const tabs = document.querySelectorAll('.photo-tab');
+    const cards = document.querySelectorAll('.photo-card');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        const cat = tab.dataset.cat;
+        cards.forEach(card => {
+          const show = cat === 'all' || card.dataset.cat === cat;
+          card.style.display = show ? '' : 'none';
+        });
+      });
+    });
+
+    // Lightbox
+    const lightbox = document.getElementById('ph-lightbox');
+    const lbImg = document.getElementById('ph-lb-img');
+    const lbClose = document.getElementById('ph-lb-close');
+    const lbPrev = document.getElementById('ph-lb-prev');
+    const lbNext = document.getElementById('ph-lb-next');
+    let currentIndex = 0;
+    let visibleCards = [];
+
+    function openLightbox(index) {
+      visibleCards = [...document.querySelectorAll('.photo-card:not([style*="none"])')];
+      currentIndex = index;
+      const card = visibleCards[currentIndex];
+      const img = card.querySelector('img');
+      lbImg.src = img.src;
+      lbImg.alt = img.alt;
+      lightbox.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      lbImg.src = '';
+      document.body.style.overflow = '';
+    }
+
+    function navigate(dir) {
+      currentIndex = (currentIndex + dir + visibleCards.length) % visibleCards.length;
+      const img = visibleCards[currentIndex].querySelector('img');
+      lbImg.src = img.src;
+      lbImg.alt = img.alt;
+    }
+
+    document.querySelectorAll('.photo-card').forEach((card, i) => {
+      card.addEventListener('click', () => openLightbox(i));
+    });
+
+    lbClose.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+    lbPrev.addEventListener('click', () => navigate(-1));
+    lbNext.addEventListener('click', () => navigate(1));
+    document.addEventListener('keydown', e => {
+      if (!lightbox.classList.contains('open')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') navigate(-1);
+      if (e.key === 'ArrowRight') navigate(1);
+    });
+  </script>
+</body>
+</html>

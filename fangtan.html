@@ -6,7 +6,7 @@
   <title>訪談影像 | LIAO</title>
   <link rel="stylesheet" href="css/style.css" />
   <style>
-    .ft-page { padding: 8rem 5% 5rem; max-width: 1100px; margin: 0 auto; }
+    .ft-page { padding: 8rem 10% 5rem; }
     .ft-header { margin-bottom: 3.5rem; }
     .ft-back { font-size: 0.78rem; letter-spacing: 0.15em; color: var(--accent); text-decoration: none; display: inline-block; margin-bottom: 1.5rem; }
     .ft-back:hover { opacity: 0.7; }
@@ -21,7 +21,7 @@
     }
     @media (max-width: 640px) {
       .ft-grid { grid-template-columns: 1fr; }
-      .ft-page { padding: 6rem 4% 4rem; }
+      .ft-page { padding: 6rem 3% 4rem; }
     }
 
     .ft-card {
@@ -102,7 +102,8 @@
   <nav class="nav">
     <a href="index.html" class="nav-logo">LIAO</a>
     <ul class="nav-links">
-      <li><a href="index.html#gallery">平面攝影</a></li>
+      <li><a href="index.html">首頁</a></li>
+      <li><a href="photo.html">平面攝影</a></li>
       <li><a href="video.html">動態影像</a></li>
       <li><a href="index.html#about">關於</a></li>
       <li><a href="index.html#contact">聯絡</a></li>
@@ -142,6 +143,28 @@
         </div>
       </div>
 
+      <div class="ft-card" data-type="youtube" data-id="_xFUaSg5JPo">
+        <div class="ft-thumb">
+          <img src="https://img.youtube.com/vi/_xFUaSg5JPo/maxresdefault.jpg" alt="屈中恆" loading="lazy" />
+          <div class="ft-play"><div class="ft-play-circle">▶</div></div>
+        </div>
+        <div class="ft-info">
+          <div class="ft-label">訪談</div>
+          <div class="ft-name">屈中恆</div>
+        </div>
+      </div>
+
+      <div class="ft-card" data-type="youtube" data-id="WBGvtaxt-1s">
+        <div class="ft-thumb">
+          <img src="https://img.youtube.com/vi/WBGvtaxt-1s/maxresdefault.jpg" alt="吳淡如" loading="lazy" />
+          <div class="ft-play"><div class="ft-play-circle">▶</div></div>
+        </div>
+        <div class="ft-info">
+          <div class="ft-label">訪談</div>
+          <div class="ft-name">吳淡如</div>
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -168,7 +191,12 @@
       card.addEventListener('click', () => {
         const id = card.dataset.id;
         if (!id) return;
-        iframe.src = `https://drive.google.com/file/d/${id}/preview?autoplay=1`;
+        const type = card.dataset.type || 'drive';
+        if (type === 'youtube') {
+          iframe.src = `https://www.youtube.com/embed/${id}?autoplay=1`;
+        } else {
+          iframe.src = `https://drive.google.com/file/d/${id}/preview?autoplay=1`;
+        }
         lightbox.classList.add('open');
         document.body.style.overflow = 'hidden';
       });

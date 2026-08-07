@@ -123,7 +123,17 @@
     <ul class="nav-links">
       <li><a href="index.html">首頁</a></li>
       <li><a href="photo.html">平面攝影</a></li>
-      <li><a href="video.html" class="spy-active">動態影像</a></li>
+      <li class="nav-dropdown">
+        <a href="video.html" class="spy-active">動態影像</a>
+        <ul class="nav-dropdown-menu">
+          <li><a href="video.html#xingxiang">形象影片</a></li>
+          <li><a href="video.html#jilu">活動紀錄</a></li>
+          <li><a href="video.html#chanpin">產品</a></li>
+          <li><a href="video.html#fangtan">訪談</a></li>
+          <li><a href="video.html#mv">ＭＶ</a></li>
+          <li><a href="video.html#reels">Reels</a></li>
+        </ul>
+      </li>
       <li><a href="live.html">現場直播</a></li>
       <li><a href="index.html#about">關於</a></li>
       <li><a href="index.html#contact">聯絡</a></li>
@@ -541,8 +551,16 @@
       });
     });
 
-    // 初始載入
-    applyFilter('all');
+    // 初始載入 — 若有 URL hash 則自動切換對應分頁
+    const initHash = location.hash.slice(1);
+    const initBtn = initHash ? document.querySelector(`.vp-filter-btn[data-cat="${initHash}"]`) : null;
+    if (initBtn) {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      initBtn.classList.add('active');
+      applyFilter(initHash);
+    } else {
+      applyFilter('all');
+    }
 
     // Video Lightbox
     const videoLightbox = document.getElementById('video-lightbox');

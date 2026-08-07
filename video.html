@@ -573,16 +573,20 @@
       });
     });
 
-    // 初始載入 — 若有 URL hash 則自動切換對應分頁
-    const initHash = location.hash.slice(1);
-    const initBtn = initHash ? document.querySelector(`.vp-filter-btn[data-cat="${initHash}"]`) : null;
-    if (initBtn) {
-      filterBtns.forEach(b => b.classList.remove('active'));
-      initBtn.classList.add('active');
-      applyFilter(initHash);
-    } else {
-      applyFilter('all');
+    // 初始載入 + hashchange — 支援下拉選單從任何頁切入
+    function applyHashFilter() {
+      const h = location.hash.slice(1);
+      const btn = h ? document.querySelector(`.vp-filter-btn[data-cat="${h}"]`) : null;
+      if (btn) {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        applyFilter(h);
+      } else if (!h) {
+        applyFilter('all');
+      }
     }
+    applyHashFilter();
+    window.addEventListener('hashchange', applyHashFilter);
 
     // Video Lightbox
     const videoLightbox = document.getElementById('video-lightbox');

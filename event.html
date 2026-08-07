@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>活動紀錄 | LIAO</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .ev-page { padding: 8rem 10% 6rem; }
+
+    /* Hero */
+    .ev-hero {
+      text-align: center;
+      margin-bottom: 6rem;
+    }
+    .ev-tag {
+      font-size: 0.7rem;
+      letter-spacing: 0.35em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .ev-title {
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 200;
+      letter-spacing: 0.06em;
+      margin-bottom: 1.4rem;
+      text-wrap: balance;
+    }
+    .ev-line {
+      width: 40px;
+      height: 1px;
+      background: var(--accent);
+      margin: 0 auto 1.6rem;
+    }
+    .ev-sub {
+      font-size: 0.95rem;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+      line-height: 1.95;
+      max-width: 580px;
+      margin: 0 auto;
+    }
+
+    /* Section label */
+    .ev-section-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.35em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .ev-section-title {
+      font-size: 1.45rem;
+      font-weight: 300;
+      letter-spacing: 0.06em;
+    }
+
+    /* Video grid */
+    .ev-videos-head { margin-bottom: 2rem; }
+    .ev-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.2rem;
+      margin-bottom: 6rem;
+    }
+    .ev-card {
+      cursor: pointer;
+      border-radius: 4px;
+      overflow: hidden;
+      background: var(--surface);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .ev-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(44,36,22,0.1); }
+    .ev-thumb {
+      position: relative;
+      aspect-ratio: 16/9;
+      overflow: hidden;
+    }
+    .ev-thumb img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+    .ev-card:hover .ev-thumb img { transform: scale(1.04); }
+    .ev-play {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(0,0,0,0.12);
+      transition: background 0.3s;
+    }
+    .ev-card:hover .ev-play { background: rgba(0,0,0,0.28); }
+    .ev-play-circle {
+      width: 52px; height: 52px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.9);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+      padding-left: 3px;
+      color: #2C2416;
+      transition: transform 0.25s;
+    }
+    .ev-card:hover .ev-play-circle { transform: scale(1.1); }
+    .ev-card-info { padding: 0.9rem 1.1rem 1.1rem; }
+    .ev-card-name {
+      font-size: 0.9rem;
+      letter-spacing: 0.04em;
+      color: var(--text);
+    }
+    .ev-card-tag {
+      font-size: 0.72rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      margin-top: 0.25rem;
+    }
+
+    /* Why choose */
+    .ev-why {
+      border-top: 1px solid var(--border);
+      padding-top: 5rem;
+      margin-bottom: 5rem;
+    }
+    .ev-why-head { margin-bottom: 3.5rem; }
+    .ev-reasons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+    }
+    .ev-reason-num {
+      font-size: 0.68rem;
+      letter-spacing: 0.25em;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+    .ev-reason-title {
+      font-size: 1rem;
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.6rem;
+    }
+    .ev-reason-desc {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.8;
+      letter-spacing: 0.02em;
+    }
+
+    /* Process */
+    .ev-process {
+      border-top: 1px solid var(--border);
+      padding-top: 5rem;
+      margin-bottom: 5rem;
+    }
+    .ev-process-head { margin-bottom: 3rem; }
+    .ev-step {
+      display: grid;
+      grid-template-columns: 72px 1fr;
+      gap: 2rem;
+      padding: 2.5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .ev-step:last-child { border-bottom: none; }
+    .ev-step-num {
+      font-size: 2.4rem;
+      font-weight: 200;
+      color: var(--accent);
+      letter-spacing: 0.04em;
+      line-height: 1;
+      padding-top: 0.15rem;
+    }
+    .ev-step-q {
+      font-size: 1rem;
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.75rem;
+    }
+    .ev-step-a {
+      font-size: 0.87rem;
+      color: var(--muted);
+      line-height: 1.9;
+      letter-spacing: 0.025em;
+    }
+
+    /* CTA */
+    .ev-cta {
+      text-align: center;
+      padding: 5rem 0 2rem;
+      border-top: 1px solid var(--border);
+    }
+    .ev-cta-title {
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      font-weight: 300;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.8rem;
+    }
+    .ev-cta-sub {
+      font-size: 0.87rem;
+      color: var(--muted);
+      margin-bottom: 2.2rem;
+      letter-spacing: 0.05em;
+    }
+
+    /* Lightbox */
+    .ev-lightbox {
+      display: none; position: fixed; inset: 0; z-index: 9000;
+      background: rgba(0,0,0,0.92);
+      align-items: center; justify-content: center;
+    }
+    .ev-lightbox.open { display: flex; }
+    .ev-lb-inner {
+      position: relative;
+      width: min(900px, 92vw);
+      aspect-ratio: 16/9;
+    }
+    .ev-lb-inner iframe {
+      width: 100%; height: 100%;
+      border: none; border-radius: 4px;
+    }
+    .ev-lb-close {
+      position: absolute; top: -2.8rem; right: 0;
+      background: none; border: none;
+      color: #fff; font-size: 2rem; cursor: pointer; line-height: 1;
+      opacity: 0.8; transition: opacity 0.2s;
+    }
+    .ev-lb-close:hover { opacity: 1; }
+
+    @media (max-width: 1000px) {
+      .ev-reasons { grid-template-columns: repeat(2, 1fr); gap: 2.5rem 2rem; }
+      .ev-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 640px) {
+      .ev-page { padding: 6rem 3% 4rem; }
+      .ev-grid { grid-template-columns: 1fr; }
+      .ev-reasons { grid-template-columns: 1fr; gap: 2rem; }
+      .ev-step { grid-template-columns: 48px 1fr; gap: 1.2rem; }
+      .ev-step-num { font-size: 1.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">LIAO</a>
+    <ul class="nav-links">
+      <li><a href="index.html">首頁</a></li>
+      <li><a href="photo.html">平面攝影</a></li>
+      <li class="nav-dropdown">
+        <a href="video.html" class="active">動態影像</a>
+        <ul class="nav-dropdown-menu">
+          <li><a href="video.html#xingxiang">形象影片</a></li>
+          <li><a href="video.html#jilu">活動紀錄</a></li>
+          <li><a href="video.html#chanpin">產品</a></li>
+          <li><a href="video.html#fangtan">訪談</a></li>
+          <li><a href="video.html#mv">ＭＶ</a></li>
+          <li><a href="video.html#reels">Reels</a></li>
+        </ul>
+      </li>
+      <li><a href="live.html">現場直播</a></li>
+      <li><a href="index.html#about">關於</a></li>
+      <li><a href="index.html#contact">聯絡</a></li>
+    </ul>
+    <button class="nav-burger" aria-label="menu">&#9776;</button>
+  </nav>
+
+  <div class="ev-page">
+
+    <!-- Hero -->
+    <div class="ev-hero">
+      <p class="ev-tag">EVENT RECORD</p>
+      <h1 class="ev-title">活動紀錄影像製作</h1>
+      <div class="ev-line"></div>
+      <p class="ev-sub">活動現場稍縱即逝，每個精彩瞬間都需要精準的眼光與快速的反應力。從企業年會、演唱會、DJ 展演到品牌快閃，以專業攝影機與豐富的現場經驗，為您留下真實而有溫度的影像紀錄。</p>
+    </div>
+
+    <!-- Videos -->
+    <div class="ev-videos-head">
+      <p class="ev-section-label">SELECTED WORKS</p>
+      <h2 class="ev-section-title">精選作品</h2>
+    </div>
+    <div class="ev-grid">
+
+      <div class="ev-card" data-type="drive" data-id="1syRqXRGQ42407wK65ffWLnoje4weZ0Ud">
+        <div class="ev-thumb">
+          <img src="images/video-thumbs/diseal.jpg" alt="Diseal 藝人快閃" loading="lazy" />
+          <div class="ev-play"><div class="ev-play-circle">▶</div></div>
+        </div>
+        <div class="ev-card-info">
+          <div class="ev-card-name">Diseal 藝人快閃</div>
+          <div class="ev-card-tag">#活動紀錄</div>
+        </div>
+      </div>
+
+      <div class="ev-card" data-type="drive" data-id="1r4ZTTgapAO2dVSmUPB4HWSWo8_Ih6kVt">
+        <div class="ev-thumb">
+          <img src="images/video-thumbs/aethspire-1.jpg" alt="天啓 Aethspire — 鈦極" loading="lazy" />
+          <div class="ev-play"><div class="ev-play-circle">▶</div></div>
+        </div>
+        <div class="ev-card-info">
+          <div class="ev-card-name">天啓 Aethspire — 鈦極</div>
+          <div class="ev-card-tag">#DJ 展演</div>
+        </div>
+      </div>
+
+      <div class="ev-card" data-type="drive" data-id="1L2n8nk9QovpEc7P6cS3uyXKvMyOGmgZ5">
+        <div class="ev-thumb">
+          <img src="images/video-thumbs/urban-paradise.jpg" alt="URBAN PARADISE 跨年" loading="lazy" />
+          <div class="ev-play"><div class="ev-play-circle">▶</div></div>
+        </div>
+        <div class="ev-card-info">
+          <div class="ev-card-name">URBAN PARADISE 跨年</div>
+          <div class="ev-card-tag">#跨年活動</div>
+        </div>
+      </div>
+
+      <div class="ev-card" data-type="youtube" data-id="VVoMpf0n-LU">
+        <div class="ev-thumb">
+          <img src="https://img.youtube.com/vi/VVoMpf0n-LU/maxresdefault.jpg" alt="領航猿 全猿到齊登機" loading="lazy" />
+          <div class="ev-play"><div class="ev-play-circle">▶</div></div>
+        </div>
+        <div class="ev-card-info">
+          <div class="ev-card-name">領航猿 全猿到齊登機</div>
+          <div class="ev-card-tag">#領航猿 #啦啦隊</div>
+        </div>
+      </div>
+
+      <div class="ev-card" data-type="youtube" data-id="tkdJfdIySRw">
+        <div class="ev-thumb">
+          <img src="https://img.youtube.com/vi/tkdJfdIySRw/maxresdefault.jpg" alt="領航猿 交換聖誕禮物" loading="lazy" />
+          <div class="ev-play"><div class="ev-play-circle">▶</div></div>
+        </div>
+        <div class="ev-card-info">
+          <div class="ev-card-name">領航猿 交換聖誕禮物</div>
+          <div class="ev-card-tag">#領航猿 #啦啦隊</div>
+        </div>
+      </div>
+
+      <div class="ev-card" data-type="drive" data-id="1QV5-cDcUK5f8MzS1Z2BuDQzWN0YXJP63">
+        <div class="ev-thumb">
+          <img src="images/video-thumbs/shuangshi.jpg" alt="雙十國慶" loading="lazy" />
+          <div class="ev-play"><div class="ev-play-circle">▶</div></div>
+        </div>
+        <div class="ev-card-info">
+          <div class="ev-card-name">雙十國慶</div>
+          <div class="ev-card-tag">#政府活動</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Why choose -->
+    <div class="ev-why">
+      <div class="ev-why-head">
+        <p class="ev-section-label">WHY CHOOSE US</p>
+        <h2 class="ev-section-title">為什麼選擇我們</h2>
+      </div>
+      <div class="ev-reasons">
+        <div class="ev-reason">
+          <div class="ev-reason-num">01</div>
+          <div class="ev-reason-title">現場應變能力強</div>
+          <p class="ev-reason-desc">長期深耕展演與活動現場，快速掌握節奏變化，在突發狀況中仍能精準捕捉關鍵畫面。</p>
+        </div>
+        <div class="ev-reason">
+          <div class="ev-reason-num">02</div>
+          <div class="ev-reason-title">多鏡位靈活配置</div>
+          <p class="ev-reason-desc">依活動規模彈性搭配多機攝影，舞台、觀眾席與特寫一次到位，不遺漏任何精彩瞬間。</p>
+        </div>
+        <div class="ev-reason">
+          <div class="ev-reason-num">03</div>
+          <div class="ev-reason-title">完整一條龍製作</div>
+          <p class="ev-reason-desc">從前期溝通、現場拍攝到後製剪輯全程自行處理，品質穩定，溝通效率高，無需跨團隊協調。</p>
+        </div>
+        <div class="ev-reason">
+          <div class="ev-reason-num">04</div>
+          <div class="ev-reason-title">準時、可靠</div>
+          <p class="ev-reason-desc">嚴格遵守交件時程，提前告知進度，讓您在活動結束後安心等待成品，不需要反覆追問。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Process -->
+    <div class="ev-process">
+      <div class="ev-process-head">
+        <p class="ev-section-label">HOW IT WORKS</p>
+        <h2 class="ev-section-title">合作流程</h2>
+      </div>
+      <div>
+        <div class="ev-step">
+          <div class="ev-step-num">01</div>
+          <div>
+            <p class="ev-step-q">如何開始合作？</p>
+            <p class="ev-step-a">無論是提供預算上限，或是說明活動規模與需求，我都能依據您的條件規劃最適合的拍攝方案。您只需提供活動時間、地點與基本資訊，即可獲得客製化報價。</p>
+          </div>
+        </div>
+        <div class="ev-step">
+          <div class="ev-step-num">02</div>
+          <div>
+            <p class="ev-step-q">如何確保影片風格符合期待？</p>
+            <p class="ev-step-a">建議在合作前提供您喜歡的參考影片，讓我們事先對齊調色風格、剪輯節奏與鏡頭語言。溝通越清楚，成品越貼近您的想像。</p>
+          </div>
+        </div>
+        <div class="ev-step">
+          <div class="ev-step-num">03</div>
+          <div>
+            <p class="ev-step-q">後製時間與費用如何計算？</p>
+            <p class="ev-step-a">一般活動紀錄影片後製約需 7–14 個工作天。費用依活動時長、拍攝人數與剪輯複雜度彈性調整，歡迎直接聯絡討論詳細報價。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="ev-cta">
+      <h2 class="ev-cta-title">準備好讓活動被好好記錄了嗎？</h2>
+      <p class="ev-cta-sub">歡迎聯絡我，一起討論您的活動拍攝需求</p>
+      <a href="index.html#contact" class="btn">立即聯絡</a>
+    </div>
+
+  </div>
+
+  <!-- Lightbox -->
+  <div class="ev-lightbox" id="ev-lightbox">
+    <div class="ev-lb-inner">
+      <button class="ev-lb-close" id="ev-lb-close">&times;</button>
+      <iframe id="ev-lb-iframe" src="" allowfullscreen allow="autoplay"></iframe>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p>&copy; 2026 LIAO. All rights reserved.</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    const cards = document.querySelectorAll('.ev-card');
+    const lightbox = document.getElementById('ev-lightbox');
+    const iframe = document.getElementById('ev-lb-iframe');
+    const closeBtn = document.getElementById('ev-lb-close');
+
+    cards.forEach(card => {
+      card.addEventListener('click', () => {
+        const id = card.dataset.id;
+        const type = card.dataset.type || 'drive';
+        if (!id) return;
+        if (type === 'youtube') {
+          iframe.src = `https://www.youtube.com/embed/${id}?autoplay=1`;
+        } else {
+          iframe.src = `https://drive.google.com/file/d/${id}/preview?autoplay=1`;
+        }
+        lightbox.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      iframe.src = '';
+      document.body.style.overflow = '';
+    }
+
+    closeBtn.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+  </script>
+</body>
+</html>

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>現場直播 | LIAO</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .live-page { padding: 8rem 10% 6rem; }
+
+    /* Hero */
+    .live-hero {
+      text-align: center;
+      margin-bottom: 5rem;
+    }
+    .live-tag {
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 0.9rem;
+    }
+    .live-title {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 300;
+      letter-spacing: 0.08em;
+      margin-bottom: 1.2rem;
+    }
+    .live-sub {
+      font-size: 0.95rem;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      line-height: 1.8;
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    /* Feature cards */
+    .live-features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2.5rem;
+      margin-bottom: 5rem;
+    }
+
+    .live-feature-img {
+      aspect-ratio: 4/3;
+      overflow: hidden;
+      border-radius: 4px;
+      background: var(--surface);
+      margin-bottom: 1.4rem;
+    }
+    .live-feature-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+    .live-feature:hover .live-feature-img img { transform: scale(1.04); }
+
+    .live-feature-title {
+      font-size: 1.15rem;
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.7rem;
+    }
+    .live-feature-desc {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.75;
+      letter-spacing: 0.03em;
+    }
+
+    /* Specs */
+    .live-specs {
+      border-top: 1px solid var(--border);
+      padding-top: 4rem;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      text-align: center;
+    }
+    .live-spec-num {
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      font-weight: 200;
+      letter-spacing: 0.04em;
+      color: var(--accent);
+      margin-bottom: 0.4rem;
+    }
+    .live-spec-label {
+      font-size: 0.78rem;
+      color: var(--muted);
+      letter-spacing: 0.15em;
+    }
+
+    /* CTA */
+    .live-cta {
+      text-align: center;
+      padding: 5rem 0 2rem;
+    }
+    .live-cta-title {
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      font-weight: 300;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.8rem;
+    }
+    .live-cta-sub {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-bottom: 2rem;
+      letter-spacing: 0.05em;
+    }
+
+    @media (max-width: 1000px) {
+      .live-features { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+      .live-specs { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .live-page { padding: 6rem 3% 4rem; }
+      .live-features { grid-template-columns: 1fr; gap: 1.8rem; }
+      .live-specs { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">LIAO</a>
+    <ul class="nav-links">
+      <li><a href="index.html">首頁</a></li>
+      <li><a href="photo.html">平面攝影</a></li>
+      <li><a href="video.html">動態影像</a></li>
+      <li><a href="live.html" class="active">現場直播</a></li>
+      <li><a href="index.html#about">關於</a></li>
+      <li><a href="index.html#contact">聯絡</a></li>
+    </ul>
+    <button class="nav-burger" aria-label="menu">&#9776;</button>
+  </nav>
+
+  <div class="live-page">
+
+    <!-- Hero -->
+    <div class="live-hero">
+      <p class="live-tag">LIVE STREAMING</p>
+      <h1 class="live-title">專業直播・多鏡位製作</h1>
+      <p class="live-sub">配備多機攝影機、導播機、大型搖臂與空拍，各種拍攝鏡位靈活組合，讓您的直播畫面更加多元精彩</p>
+    </div>
+
+    <!-- Features -->
+    <div class="live-features">
+
+      <div class="live-feature">
+        <div class="live-feature-img">
+          <img src="images/live/director.jpg" alt="導播機設備" loading="lazy" />
+        </div>
+        <h3 class="live-feature-title">導播機設備</h3>
+        <p class="live-feature-desc">專業導播機設備，可即時切換各種鏡頭，支援多平台同步推流，確保畫面穩定順暢</p>
+      </div>
+
+      <div class="live-feature">
+        <div class="live-feature-img">
+          <img src="images/live/multicam.jpg" alt="多鏡位攝影機" loading="lazy" />
+        </div>
+        <h3 class="live-feature-title">多鏡位攝影機</h3>
+        <p class="live-feature-desc">多機攝影機全方位拍攝現場各個角度，舞台、觀眾席、特寫一次到位</p>
+      </div>
+
+      <div class="live-feature">
+        <div class="live-feature-img">
+          <img src="images/live/jib.jpg" alt="大型搖臂" loading="lazy" />
+        </div>
+        <h3 class="live-feature-title">大型搖臂</h3>
+        <p class="live-feature-desc">大型搖臂提供流暢的升降推拉運鏡，讓活動現場呈現更具視覺震撼的動態畫面</p>
+      </div>
+
+    </div>
+
+    <!-- Specs -->
+    <div class="live-specs">
+      <div>
+        <div class="live-spec-num">4+</div>
+        <div class="live-spec-label">CAMERAS</div>
+      </div>
+      <div>
+        <div class="live-spec-num">4K</div>
+        <div class="live-spec-label">RESOLUTION</div>
+      </div>
+      <div>
+        <div class="live-spec-num">多</div>
+        <div class="live-spec-label">PLATFORM</div>
+      </div>
+      <div>
+        <div class="live-spec-num">即時</div>
+        <div class="live-spec-label">STREAMING</div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="live-cta">
+      <h2 class="live-cta-title">準備好讓活動更精彩了嗎？</h2>
+      <p class="live-cta-sub">歡迎聯絡我們討論直播規劃</p>
+      <a href="index.html#contact" class="btn">聯絡我們</a>
+    </div>
+
+  </div>
+
+  <footer class="footer">
+    <p>&copy; 2026 LIAO. All rights reserved.</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

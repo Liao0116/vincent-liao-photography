@@ -59,11 +59,11 @@ img { display: block; width: 100%; object-fit: cover; }
 .nav-links a:hover { opacity: 1; color: var(--accent); }
 
 /* Dropdown */
-.nav-dropdown { position: relative; }
+.nav-dropdown { position: relative; padding-bottom: 0.6rem; }
 .nav-dropdown-menu {
   display: none;
   position: absolute;
-  top: calc(100% + 0.6rem);
+  top: 100%;
   left: 50%;
   transform: translateX(-50%);
   background: var(--bg);
